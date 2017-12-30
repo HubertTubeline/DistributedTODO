@@ -24,7 +24,7 @@ namespace DistributedToDo.Web.App_Start
 
         private IUserService CreateUserService()
         {
-            return serviceCreator.CreateUserService("Identity");
+            return serviceCreator.CreateUserService("DefaultConnection");
         }
     }
 }
