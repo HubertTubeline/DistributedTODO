@@ -6,16 +6,26 @@ namespace DistributedToDo.Web.Models
     {
         [Required]
         public string Email { get; set; }
+
+
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Password")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
+
+
         [Required]
-        public string Address { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string LastName { get; set; }
+
+
+        public string Number { get; set; }
+
+        public string Comment { get; set; }
     }
 }

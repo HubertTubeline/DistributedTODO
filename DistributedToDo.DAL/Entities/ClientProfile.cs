@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 
 namespace DistributedToDo.DAL.Entities
 {
@@ -9,8 +10,15 @@ namespace DistributedToDo.DAL.Entities
         [ForeignKey("ApplicationUser")]
         public string Id { get; set; }
 
-        public string Name { get; set; }
-        public string Address { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Number { get; set; }
+
+        public byte[] Photo { get; set; }
+
+        public string Comment { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
     }

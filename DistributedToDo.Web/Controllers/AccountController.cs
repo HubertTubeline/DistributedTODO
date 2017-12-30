@@ -1,10 +1,10 @@
-﻿using DistributedToDo.BLL.DTO;
+﻿using AutoMapper;
+using DistributedToDo.BLL.DTO;
 using DistributedToDo.BLL.Infrastructure;
 using DistributedToDo.BLL.Interfaces;
 using DistributedToDo.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -39,7 +39,6 @@ namespace DistributedToDo.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginModel model)
         {
-            await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
                 UserDTO userDto = new UserDTO { Email = model.Email, Password = model.Password };
@@ -76,17 +75,11 @@ namespace DistributedToDo.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterModel model)
         {
-            await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
-                UserDTO userDto = new UserDTO
-                {
-                    Email = model.Email,
-                    Password = model.Password,
-                    Address = model.Address,
-                    Name = model.Name,
-                    Role = "user"
-                };
+                Mapper.Initialize(cfg => cfg.CreateMap<RegisterModel, UserDTO>());
+                var userDto = Mapper.Map<RegisterModel, UserDTO>(model);
+                userDto.Role = "user";
                 OperationDetails operationDetails = await UserService.Create(userDto);
                 if (operationDetails.Succedeed)
                     return View("SuccessRegister");
@@ -95,17 +88,7 @@ namespace DistributedToDo.Web.Controllers
             }
             return View(model);
         }
-        private async Task SetInitialDataAsync()
-        {
-            await UserService.SetInitialData(new UserDTO
-            {
-                Email = "admin@admin.ru",
-                UserName = "admin",
-                Password = "admin",
-                Name = "Семен Семенович Горбунков",
-                Address = "ул. Спортивная, д.30, кв.75",
-                Role = "admin",
-            }, new List<string> { "user", "admin" });
-        }
+
+
     }
 }
