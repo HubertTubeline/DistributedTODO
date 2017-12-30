@@ -4,7 +4,7 @@ using DistributedToDo.BLL.Interfaces;
 using DistributedToDo.DAL.Entities;
 using DistributedToDo.DAL.Interfaces;
 using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
+using AutoMapper;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -22,6 +22,9 @@ namespace DistributedToDo.BLL.Services
 
         public async Task<OperationDetails> Create(UserDTO userDto)
         {
+            Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, ClientProfile>());
+            var profile = Mapper.Map<UserDTO, ClientProfile>(userDto);
+
             ApplicationUser user = await Database.UserManager.FindByEmailAsync(userDto.Email);
             if (user == null)
             {
@@ -32,7 +35,8 @@ namespace DistributedToDo.BLL.Services
                 // добавляем роль
                 await Database.UserManager.AddToRoleAsync(user.Id, userDto.Role);
                 // создаем профиль клиента
-                ClientProfile clientProfile = new ClientProfile { Id = user.Id, Address = userDto.Address, Name = userDto.Name };
+                ClientProfile clientProfile = profile;
+                clientProfile.Id = user.Id;
                 Database.ClientManager.Create(clientProfile);
                 await Database.SaveAsync();
                 return new OperationDetails(true, "Регистрация успешно пройдена", "");
@@ -53,21 +57,6 @@ namespace DistributedToDo.BLL.Services
                 claim = await Database.UserManager.CreateIdentityAsync(user,
                                             DefaultAuthenticationTypes.ApplicationCookie);
             return claim;
-        }
-
-        // начальная инициализация бд
-        public async Task SetInitialData(UserDTO adminDto, List<string> roles)
-        {
-            foreach (string roleName in roles)
-            {
-                var role = await Database.RoleManager.FindByNameAsync(roleName);
-                if (role == null)
-                {
-                    role = new ApplicationRole { Name = roleName };
-                    await Database.RoleManager.CreateAsync(role);
-                }
-            }
-            await Create(adminDto);
         }
 
         public void Dispose()
