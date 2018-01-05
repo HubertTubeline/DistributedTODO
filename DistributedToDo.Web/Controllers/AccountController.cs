@@ -30,6 +30,41 @@ namespace DistributedToDo.Web.Controllers
             }
         }
 
+        [Authorize]
+        public  ActionResult Index()
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO,AccountModel>().ReverseMap());
+            var user = UserService.GetUser(User.Identity.Name);
+            var item = Mapper.Map<AccountModel>(user);
+            return View(item);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            var user = UserService.GetUser(User.Identity.Name);
+            var userDto = new AccountModel
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                MiddleName = user.MiddleName,
+                Number = user.Number,
+                Comment = user.Comment
+            };
+            return View(userDto);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Edit(AccountModel user)
+        {
+            var model = Mapper.Map(user,typeof(AccountModel), typeof(UserDTO));
+            UserService.Edit(model as UserDTO);
+            return View();
+        }
+
         public ActionResult Login()
         {
             return View();
@@ -77,7 +112,6 @@ namespace DistributedToDo.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Mapper.Initialize(cfg => cfg.CreateMap<RegisterModel, UserDTO>());
                 var userDto = Mapper.Map<RegisterModel, UserDTO>(model);
                 userDto.Role = "user";
                 OperationDetails operationDetails = await UserService.Create(userDto);

@@ -1,0 +1,46 @@
+﻿@model DistributedToDo.Web.Models.AccountModel
+
+@{
+    ViewBag.Title = "Аккаунт";
+}
+
+<h2>Просмотр профиля пользователя: @Model.FirstName @Model.MiddleName @Model.LastName</h2>
+
+<div class="col-md-offset-0 col-md-12">
+    <div class="col-md-10">
+        <h3>Email</h3>
+        <h4>@Model.Email</h4>
+    </div>
+
+    <div class="col-md-10">
+        <h3>First name</h3>
+        <h4>@Model.FirstName</h4>
+    </div class="col-md-10">
+
+    @if (Model.MiddleName != null)
+    {
+        <div class="col-md-10">
+            <h3>Middle name</h3>
+            <h4>@Model.MiddleName</h4>
+        </div>
+    }
+
+    <div class="col-md-10">
+        <h3>Last name</h3>
+        <h4>@Model.LastName</h4>
+    </div>
+
+    <div class="col-md-10">
+        <h3>Phone number</h3>
+        <h4>@Model.Number</h4>
+    </div>
+
+    @if (Model.Comment != null)
+    {
+        <div class="col-md-10">
+            <h3>Comment</h3>
+            <h4>@Model.Comment</h4>
+        </div>
+    }
+</div>
+    <a href="@Url.Action("Edit")" class="btn btn-default">Редактировать профиль</a>

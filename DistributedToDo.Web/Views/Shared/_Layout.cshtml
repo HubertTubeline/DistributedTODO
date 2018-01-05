@@ -32,9 +32,7 @@
                     }
                     else
                     {
-                        <li>
-                            <a>Привет @User.Identity.Name</a>
-                        </li>
+                        <li>@Html.ActionLink(User.Identity.Name,"Index","Account")</li>
                         <li>@Html.ActionLink("Выход", "Logout", "Account")</li>
                     }
 

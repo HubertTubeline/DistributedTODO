@@ -8,6 +8,7 @@ using AutoMapper;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System;
 
 namespace DistributedToDo.BLL.Services
 {
@@ -22,7 +23,6 @@ namespace DistributedToDo.BLL.Services
 
         public async Task<OperationDetails> Create(UserDTO userDto)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, ClientProfile>());
             var profile = Mapper.Map<UserDTO, ClientProfile>(userDto);
 
             ApplicationUser user = await Database.UserManager.FindByEmailAsync(userDto.Email);
@@ -47,7 +47,21 @@ namespace DistributedToDo.BLL.Services
             }
         }
 
-        public async Task<ClaimsIdentity> Authenticate(UserDTO userDto)
+        public OperationDetails Edit(UserDTO userDto)
+        {
+            var profile = Mapper.Map<UserDTO, ClientProfile>(userDto);
+            try
+            {
+                Database.ClientManager.Edit(profile);
+            }
+            catch
+            {
+                return new OperationDetails(false, "Ошибка изменения данных", "");
+            }
+            return new OperationDetails(true, "Изменения успешно применены", "");
+        }
+
+            public async Task<ClaimsIdentity> Authenticate(UserDTO userDto)
         {
             ClaimsIdentity claim = null;
             // находим пользователя
@@ -59,6 +73,11 @@ namespace DistributedToDo.BLL.Services
             return claim;
         }
 
+        public UserDTO GetUser(string Email)
+        {
+            UserDTO userDto = Mapper.Map<ClientProfile,UserDTO>(Database.ClientManager.GetClient(Email));
+            return userDto;
+        }
         public void Dispose()
         {
             Database.Dispose();
