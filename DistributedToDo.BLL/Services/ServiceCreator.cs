@@ -7,7 +7,12 @@ namespace DistributedToDo.BLL.Services
     {
         public IUserService CreateUserService(string connection)
         {
-            return new UserService(new IdentityUnitOfWork(connection));
+            return new UserService(new UnitOfWork(connection));
+        }
+
+        public IUserTaskService CreateUserTaskService(string connection)
+        {
+            return new UserTaskService(new UnitOfWork(connection));
         }
     }
 }

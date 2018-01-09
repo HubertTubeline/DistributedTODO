@@ -9,5 +9,6 @@ namespace DistributedToDo.DAL.EF
         public ApplicationContext(string conectionString) : base(conectionString) { }
 
         public DbSet<ClientProfile> ClientProfiles { get; set; }
+        public DbSet<UserTask> UserTasks { get; set; }
     }
 }

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<DistributedToDo.Web.Models.TaskModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ваш список задач:</h2>
+
+@foreach(var item in Model)
+{
+    <h6>@item.Checked</h6>
+    <h2>@item.Name</h2>
+    <h4>@item.Description</h4>
+}

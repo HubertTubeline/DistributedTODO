@@ -21,7 +21,7 @@ namespace DistributedToDo.BLL.Services
             Database = uow;
         }
 
-        public async Task<OperationDetails> Create(UserDTO userDto)
+        public async Task<OperationDetails> CreateAsync(UserDTO userDto)
         {
             var profile = Mapper.Map<UserDTO, ClientProfile>(userDto);
 

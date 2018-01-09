@@ -80,7 +80,7 @@ namespace DistributedToDo.Web.Controllers
                 ClaimsIdentity claim = await UserService.Authenticate(userDto);
                 if (claim == null)
                 {
-                    ModelState.AddModelError("", "Неверный логин или пароль.");
+                    return View();
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace DistributedToDo.Web.Controllers
             {
                 var userDto = Mapper.Map<RegisterModel, UserDTO>(model);
                 userDto.Role = "user";
-                OperationDetails operationDetails = await UserService.Create(userDto);
+                OperationDetails operationDetails = await UserService.CreateAsync(userDto);
                 if (operationDetails.Succedeed)
                     return View("SuccessRegister");
                 else

@@ -2,8 +2,10 @@
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
-using DistributedToDo.BLL.Infrastructure;
 using DistributedToDo.Web.Infrastructure;
+using Ninject;
+using Ninject.Modules;
+using Ninject.Web.Mvc;
 
 namespace DistributedToDo.Web
 {
@@ -16,11 +18,18 @@ namespace DistributedToDo.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            //Инициализация маппера
             Mapper.Initialize(cfg => 
             {
                 cfg.AddProfile<Web.Infrastructure.MapperUserProfile>();
                 cfg.AddProfile<BLL.Infrastructure.MapperUserProfile>();
             });
+
+            //Внедрение зависимостей
+            NinjectModule registrations = new NinjectRegistrations();
+            NinjectModule bllRegistrations = new BLL.Infrastructure.NinjectRegistrations();
+            var kernel = new StandardKernel(registrations, bllRegistrations);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
 }

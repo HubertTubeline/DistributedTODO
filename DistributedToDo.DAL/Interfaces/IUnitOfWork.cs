@@ -9,6 +9,7 @@ namespace DistributedToDo.DAL.Interfaces
         ApplicationUserManager UserManager { get; }
         IClientManager ClientManager { get; }
         ApplicationRoleManager RoleManager { get; }
+        IUserTasksManager TasksManager { get; }
         Task SaveAsync();
     }
 }

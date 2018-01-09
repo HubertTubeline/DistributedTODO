@@ -8,25 +8,32 @@ using System.Threading.Tasks;
 
 namespace DistributedToDo.DAL.Repositories
 {
-    public class IdentityUnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private ApplicationContext db;
 
         private ApplicationUserManager userManager;
         private ApplicationRoleManager roleManager;
         private IClientManager clientManager;
+        private IUserTasksManager tasksManager;
 
-        public IdentityUnitOfWork(string connectionString)
+        public UnitOfWork(string connectionString)
         {
             db = new ApplicationContext(connectionString);
             userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
             roleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(db));
             clientManager = new ClientManager(db);
+            tasksManager = new UserTasksManager(db);
         }
 
         public ApplicationUserManager UserManager
         {
             get { return userManager; }
+        }
+
+        public IUserTasksManager TasksManager
+        {
+            get { return tasksManager; }
         }
 
         public IClientManager ClientManager

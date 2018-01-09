@@ -1,6 +1,5 @@
 ﻿using DistributedToDo.DAL.Entities;
 using System;
-using System.Threading.Tasks;
 
 namespace DistributedToDo.DAL.Interfaces
 {

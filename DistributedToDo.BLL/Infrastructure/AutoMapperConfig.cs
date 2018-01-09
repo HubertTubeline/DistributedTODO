@@ -9,7 +9,10 @@ namespace DistributedToDo.BLL.Infrastructure
         public MapperUserProfile()
         {
             CreateMap<UserDTO,ClientProfile>();
+            CreateMap<TaskDTO, UserTask>();
+
             CreateMap<ClientProfile, UserDTO>();
+            CreateMap<UserTask, TaskDTO>();
         }
     }
 }

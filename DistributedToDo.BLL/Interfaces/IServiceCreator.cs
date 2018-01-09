@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DistributedToDo.BLL.Interfaces
+﻿namespace DistributedToDo.BLL.Interfaces
 {
     public interface IServiceCreator
     {
         IUserService CreateUserService(string connection);
+        IUserTaskService CreateUserTaskService(string connection);
     }
 }

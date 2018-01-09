@@ -8,7 +8,7 @@ namespace DistributedToDo.BLL.Interfaces
 {
     public interface IUserService : IDisposable
     {
-        Task<OperationDetails> Create(UserDTO userDto);
+        Task<OperationDetails> CreateAsync(UserDTO userDto);
         Task<ClaimsIdentity> Authenticate(UserDTO userDto);
         UserDTO GetUser(string Email);
         OperationDetails Edit(UserDTO userDto);
