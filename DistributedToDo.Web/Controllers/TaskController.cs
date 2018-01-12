@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using DistributedToDo.BLL.DTO;
+using DistributedToDo.BLL.Infrastructure;
 using DistributedToDo.BLL.Interfaces;
 using DistributedToDo.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -26,14 +25,27 @@ namespace DistributedToDo.Web.Controllers
             TaskService = userTaskService;
         }
 
-        // GET: Task
-        [HttpGet]
         public ActionResult Index()
         {
-            var item = Mapper.Map<IEnumerable<TaskDTO>, IEnumerable<TaskModel>>(TaskService.GetTasks(User.Identity.Name));
+            IEnumerable<TaskModel> item = Mapper.Map<IEnumerable<TaskDTO>, IEnumerable<TaskModel>>(TaskService.GetTasks(User.Identity.Name));
             return View(item);
         }
-        [HttpGet]
+
+        [HttpPost]
+        public ActionResult Index(TaskModel model, string action)
+        {
+            if(action == "edit")
+            {
+                return RedirectToAction("Edit", model);
+            }
+            else if(action == "delete")
+            {
+                return RedirectToAction("Delete", model);
+            }
+            IEnumerable<TaskModel> item = Mapper.Map<IEnumerable<TaskDTO>, IEnumerable<TaskModel>>(TaskService.GetTasks(User.Identity.Name));
+            return View(item);
+        }
+
         public ActionResult Create()
         {
             return View();
@@ -42,9 +54,35 @@ namespace DistributedToDo.Web.Controllers
         [HttpPost]
         public ActionResult Create(TaskModel model)
         {
+            TaskDTO item = Mapper.Map<TaskModel, TaskDTO>(model);
+            item.UserName = User.Identity.Name;
+            OperationDetails details = TaskService.Create(item);
+            ViewBag.Message = details.Message;
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult Edit(string taskId)
+        {
+            TaskModel item = Mapper.Map<TaskDTO,TaskModel>(TaskService.GetTask(taskId));
+            return View(item);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(TaskModel model)
+        {
+            TaskDTO item = Mapper.Map<TaskModel, TaskDTO>(model);
+            item.UserName = User.Identity.Name;
+            OperationDetails details = TaskService.Edit(item);
+            ViewBag.Message = details.Message;
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(TaskModel model)
+        {
             var item = Mapper.Map<TaskModel, TaskDTO>(model);
-            TaskService.Create(item);
-            return View();
+            item.UserName = User.Identity.Name;
+            TaskService.Delete(item);
+            return RedirectToAction("Index");
         }
     }
 }
