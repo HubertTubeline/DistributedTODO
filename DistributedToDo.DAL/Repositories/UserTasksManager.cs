@@ -1,7 +1,6 @@
 ﻿using DistributedToDo.DAL.EF;
 using DistributedToDo.DAL.Entities;
 using DistributedToDo.DAL.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,21 +16,19 @@ namespace DistributedToDo.DAL.Repositories
 
         public void Create(UserTask task)
         {
-            task.Id = Guid.NewGuid().ToString();
             Database.UserTasks.Add(task);
             Database.SaveChanges();
         }
 
-        public void Edit(UserTask userTask)
+        public void Edit(UserTask task)
         {
-            UserTask item = Database.UserTasks.FirstOrDefault(x => x.Id == userTask.Id && x.UserName == userTask.UserName);
+            var item = Database.UserTasks.FirstOrDefault(x => x.Id == task.Id);
             if (item != null)
             {
-                item.Name = userTask.Name;
-                item.Description = userTask.Description;
-                item.Checked = userTask.Checked;
-                item.UserName = userTask.UserName;
-                Database.SaveChanges();
+                    item.Name = task.Name;
+                    item.Description = task.Description;
+                    item.Checked = task.Checked;
+                    Database.SaveChanges();
             }
             else
             {
@@ -40,13 +37,12 @@ namespace DistributedToDo.DAL.Repositories
 
         }
 
-        public void Delete(UserTask userTask)
+        public void Delete(UserTask task)
         {
-            UserTask item = Database.UserTasks.FirstOrDefault(x => x.Id == userTask.Id && x.UserName == userTask.UserName);
+            var item = Database.UserTasks.FirstOrDefault(x => x.Id == task.Id);
             if (item != null)
             {
                 Database.UserTasks.Remove(item);
-                Database.SaveChanges();
             }
             else
             {
@@ -56,12 +52,8 @@ namespace DistributedToDo.DAL.Repositories
 
         public IEnumerable<UserTask> GetTasks(string email)
         {
-            return Database.UserTasks.Where(x => x.UserName == email).ToList();
-        }
-
-        public UserTask GetTask(string taskId)
-        {
-            return Database.UserTasks.FirstOrDefault(x => x.Id == taskId);
+            var item = Database.UserTasks.Where(x => x.UserName == email).ToList();
+            return item;
         }
     }
 }

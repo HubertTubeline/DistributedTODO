@@ -11,11 +11,16 @@ namespace DistributedToDo.Web.Infrastructure
             CreateMap<UserDTO, AccountModel>();
             CreateMap<UserDTO, RegisterModel>();
             CreateMap<UserDTO, LoginModel>();
-            CreateMap<TaskDTO, TaskModel>();
 
             CreateMap<AccountModel, UserDTO>();
+
             CreateMap<RegisterModel, UserDTO>();
+            /*.ForAllMembers(x => x.AllowNull());*/
             CreateMap<LoginModel, UserDTO>();
+            /*.ForMember("Id", opt => opt.Ignore())
+            .ForMember("Role", opt => opt.Ignore());
+            */
+            CreateMap<TaskDTO, TaskModel>();
             CreateMap<TaskModel, TaskDTO>();
         }
     }
