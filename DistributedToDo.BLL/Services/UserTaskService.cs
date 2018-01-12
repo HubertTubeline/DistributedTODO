@@ -35,7 +35,8 @@ namespace DistributedToDo.BLL.Services
         }
         public IEnumerable<TaskDTO> GetTasks(string email)
         {
-            return Mapper.Map<IEnumerable<UserTask>, IEnumerable<TaskDTO>>(Database.TasksManager.GetTasks(email));
+            var tasks =  Database.TasksManager.GetTasks(email);
+            return Mapper.Map<IEnumerable<UserTask>, IEnumerable<TaskDTO>>(tasks);
         }
         public OperationDetails Edit(TaskDTO taskDto)
         {
@@ -53,18 +54,13 @@ namespace DistributedToDo.BLL.Services
         {
             try
             {
-                Database.TasksManager.Delete(Mapper.Map<TaskDTO,UserTask>(taskDto));
+                Database.TasksManager.Delete(Mapper.Map<TaskDTO, UserTask>(taskDto));
             }
             catch
             {
                 return new OperationDetails(false, "Ошибка удаления задачи.", "");
             }
             return new OperationDetails(true, "Задача успешно удалена.", "");
-        }
-
-        public TaskDTO GetTask(string TaskId)
-        {
-            return Mapper.Map<UserTask,TaskDTO>(Database.TasksManager.GetTask(TaskId));
         }
     }
 }

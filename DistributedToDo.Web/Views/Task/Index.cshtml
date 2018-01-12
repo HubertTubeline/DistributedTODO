@@ -3,17 +3,12 @@
 @{
     ViewBag.Title = "Index";
 }
-<h4>@ViewBag.Message</h4>
+
 <h2>Ваш список задач:</h2>
-@Html.ActionLink("Создать задачу", "Create",null, new { @class = "btn btn-success" })
-@foreach (var item in Model)
+
+@foreach(var item in Model)
 {
-    using (Html.BeginForm())
-    {
-    @Html.HiddenFor(i => i.FirstOrDefault(m => m.Name == item.Name).Id)
+    <h6>@item.Checked</h6>
     <h2>@item.Name</h2>
     <h4>@item.Description</h4>
-    <button name="action" value="edit" class="btn btn-default">Изменить</button>
-    <button name="action" value="delete" class="btn btn-danger">Удалить</button>
-    }
 }
