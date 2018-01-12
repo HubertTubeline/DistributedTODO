@@ -11,5 +11,6 @@ namespace DistributedToDo.BLL.Interfaces
         IEnumerable<TaskDTO> GetTasks(string email);
         OperationDetails Edit(TaskDTO taskDto);
         OperationDetails Delete(TaskDTO taskDto);
+        TaskDTO GetTask(string taskId);
     }
 }

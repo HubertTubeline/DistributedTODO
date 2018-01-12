@@ -9,5 +9,6 @@ namespace DistributedToDo.DAL.Interfaces
         IEnumerable<UserTask> GetTasks(string email);
         void Edit(UserTask task);
         void Delete(UserTask task);
+        UserTask GetTask(string taskId);
     }
 }
