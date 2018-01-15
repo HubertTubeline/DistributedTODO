@@ -2,6 +2,7 @@
 using DistributedToDo.BLL.DTO;
 using DistributedToDo.BLL.Infrastructure;
 using DistributedToDo.BLL.Interfaces;
+using DistributedToDo.Web.Filters;
 using DistributedToDo.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ using System.Web.Mvc;
 
 namespace DistributedToDo.Web.Controllers
 {
+    [Culture]
+    [Authorize]
     public class TaskController : Controller
     {
         private IUserTaskService TaskService { get; set; }
@@ -46,6 +49,7 @@ namespace DistributedToDo.Web.Controllers
             return View(item);
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
             return View();

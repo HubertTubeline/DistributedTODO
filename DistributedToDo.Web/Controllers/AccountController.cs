@@ -2,6 +2,7 @@
 using DistributedToDo.BLL.DTO;
 using DistributedToDo.BLL.Infrastructure;
 using DistributedToDo.BLL.Interfaces;
+using DistributedToDo.Web.Filters;
 using DistributedToDo.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace DistributedToDo.Web.Controllers
 {
+    [Culture]
     public class AccountController : Controller
     {
         private IUserService UserService
