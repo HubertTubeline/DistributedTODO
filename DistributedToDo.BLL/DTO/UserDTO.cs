@@ -16,5 +16,7 @@
         public string Comment { get; set; }
 
         public string Role { get; set; }
+
+        public string Photo { get; set; }
     }
 }

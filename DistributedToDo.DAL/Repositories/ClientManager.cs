@@ -25,11 +25,12 @@ namespace DistributedToDo.DAL.Repositories
             var item = Database.ClientProfiles.FirstOrDefault(x => x.Email == user.Email);
             if (item != null)
             {
-                item.FirstName = user.FirstName;
-                item.LastName = user.LastName;
-                item.MiddleName = user.MiddleName;
-                item.Number = user.Number;
-                item.Comment = user.Comment;
+                if (user.FirstName != null) item.FirstName = user.FirstName;
+                if (user.LastName != null) item.LastName = user.LastName;
+                item.MiddleName = user.MiddleName; //Необязательное поле
+                if (user.Number != null) item.Number = user.Number;
+                item.Comment = user.Comment; //Необязательное поле
+                if (user.Photo != null) item.Photo = user.Photo;
                 Database.SaveChanges();
             }
             else
@@ -46,6 +47,5 @@ namespace DistributedToDo.DAL.Repositories
         {
             Database.Dispose();
         }
-
     }
 }

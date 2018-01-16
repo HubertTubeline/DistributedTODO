@@ -24,5 +24,7 @@ namespace DistributedToDo.Web.Models
         public string Number { get; set; }
 
         public string Comment { get; set; }
+
+        public string Photo { get; set; }
     }
 }

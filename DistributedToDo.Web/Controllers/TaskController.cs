@@ -30,7 +30,7 @@ namespace DistributedToDo.Web.Controllers
 
         public ActionResult Index()
         {
-            IEnumerable<TaskModel> item = Mapper.Map<IEnumerable<TaskDTO>, IEnumerable<TaskModel>>(TaskService.GetTasks(User.Identity.Name));
+            IEnumerable<TaskModel> item = Mapper.Map<IEnumerable<TaskModel>>(TaskService.GetTasks(User.Identity.Name));
             return View(item);
         }
 
@@ -45,7 +45,7 @@ namespace DistributedToDo.Web.Controllers
             {
                 return RedirectToAction("Delete", model);
             }
-            IEnumerable<TaskModel> item = Mapper.Map<IEnumerable<TaskDTO>, IEnumerable<TaskModel>>(TaskService.GetTasks(User.Identity.Name));
+            IEnumerable<TaskModel> item = Mapper.Map<IEnumerable<TaskModel>>(TaskService.GetTasks(User.Identity.Name));
             return View(item);
         }
 
@@ -58,7 +58,7 @@ namespace DistributedToDo.Web.Controllers
         [HttpPost]
         public ActionResult Create(TaskModel model)
         {
-            TaskDTO item = Mapper.Map<TaskModel, TaskDTO>(model);
+            TaskDTO item = Mapper.Map<TaskDTO>(model);
             item.UserName = User.Identity.Name;
             OperationDetails details = TaskService.Create(item);
             ViewBag.Message = details.Message;
@@ -67,14 +67,14 @@ namespace DistributedToDo.Web.Controllers
         [HttpGet]
         public ActionResult Edit(string taskId)
         {
-            TaskModel item = Mapper.Map<TaskDTO,TaskModel>(TaskService.GetTask(taskId));
+            TaskModel item = Mapper.Map<TaskModel>(TaskService.GetTask(taskId));
             return View(item);
         }
 
         [HttpPost]
         public ActionResult Edit(TaskModel model)
         {
-            TaskDTO item = Mapper.Map<TaskModel, TaskDTO>(model);
+            TaskDTO item = Mapper.Map<TaskDTO>(model);
             item.UserName = User.Identity.Name;
             OperationDetails details = TaskService.Edit(item);
             ViewBag.Message = details.Message;
@@ -83,7 +83,7 @@ namespace DistributedToDo.Web.Controllers
 
         public ActionResult Delete(TaskModel model)
         {
-            var item = Mapper.Map<TaskModel, TaskDTO>(model);
+            var item = Mapper.Map<TaskDTO>(model);
             item.UserName = User.Identity.Name;
             TaskService.Delete(item);
             return RedirectToAction("Index");

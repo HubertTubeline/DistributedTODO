@@ -6,6 +6,7 @@ using DistributedToDo.Web.Filters;
 using DistributedToDo.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -35,36 +36,35 @@ namespace DistributedToDo.Web.Controllers
         [Authorize]
         public  ActionResult Index()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO,AccountModel>().ReverseMap());
-            var user = UserService.GetUser(User.Identity.Name);
-            var item = Mapper.Map<AccountModel>(user);
+            UserDTO user = UserService.GetUser(User.Identity.Name);
+            AccountModel item = Mapper.Map<AccountModel>(user);
             return View(item);
         }
 
         [Authorize]
         [HttpGet]
         public ActionResult Edit()
-        {
-            var user = UserService.GetUser(User.Identity.Name);
-            var userDto = new AccountModel
-            {
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                MiddleName = user.MiddleName,
-                Number = user.Number,
-                Comment = user.Comment
-            };
+        { 
+            AccountModel userDto = Mapper.Map<AccountModel>(UserService.GetUser(User.Identity.Name));
             return View(userDto);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(AccountModel user)
+        public ActionResult Edit(AccountModel user, HttpPostedFileBase image)
         {
-            var model = Mapper.Map(user,typeof(AccountModel), typeof(UserDTO));
-            UserService.Edit(model as UserDTO);
-            return View();
+            UserDTO model = Mapper.Map<UserDTO>(user);
+            if (image != null)
+            {
+                // Получаем расширение
+                string ext = image.FileName.Substring(image.FileName.LastIndexOf('.'));
+                // сохраняем файл по определенному пути на сервере
+                string path = user.Email + ext;
+                image.SaveAs(Server.MapPath("~/Files/" + path));
+                model.Photo = "/Files/" + path;
+            }
+            UserService.Edit(model);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Login()
@@ -110,11 +110,20 @@ namespace DistributedToDo.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterModel model)
+        public async Task<ActionResult> Register(RegisterModel model, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                var userDto = Mapper.Map<RegisterModel, UserDTO>(model);
+                UserDTO userDto = Mapper.Map<UserDTO>(model);
+                if (image != null)
+                {
+                    // Получаем расширение
+                    string ext = image.FileName.Substring(image.FileName.LastIndexOf('.'));
+                    // сохраняем файл по определенному пути на сервере
+                    string path = model.Email + ext;
+                    image.SaveAs(Server.MapPath("~/Files/" + path));
+                    userDto.Photo = "/Files/" + path;
+                }
                 userDto.Role = "user";
                 OperationDetails operationDetails = await UserService.CreateAsync(userDto);
                 if (operationDetails.Succedeed)

@@ -33,6 +33,7 @@
                     }
                     else
                     {
+                        <li><img src="/Files/@String.Concat(User.Identity.Name,".jpg")" width="50" height="50" class="img-circle"/></li>
                         <li>@Html.ActionLink(User.Identity.Name, "Index", "Account")</li>
                         <li>@Html.ActionLink("Выход", "Logout", "Account")</li>
                     }
