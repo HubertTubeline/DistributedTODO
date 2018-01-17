@@ -6,7 +6,8 @@ using DistributedToDo.Web.Filters;
 using DistributedToDo.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -56,12 +57,11 @@ namespace DistributedToDo.Web.Controllers
             UserDTO model = Mapper.Map<UserDTO>(user);
             if (image != null)
             {
-                // Получаем расширение
-                string ext = image.FileName.Substring(image.FileName.LastIndexOf('.'));
-                // сохраняем файл по определенному пути на сервере
-                string path = user.Email + ext;
-                image.SaveAs(Server.MapPath("~/Files/" + path));
-                model.Photo = "/Files/" + path;
+                string path = Server.MapPath("~/Files/" + model.Email + ".png");
+                Image img = Image.FromStream(image.InputStream);
+                img = resizeImage(img, 150, 150); //Ресайз изображения до размера 150х150
+                img.Save(path, System.Drawing.Imaging.ImageFormat.Png);
+                model.Photo = "/Files/" + model.Email + ".png";
             }
             UserService.Edit(model);
             return RedirectToAction("Index");
@@ -135,5 +135,13 @@ namespace DistributedToDo.Web.Controllers
         }
 
 
+        private Image resizeImage(Image image, int new_height, int new_width)
+        {
+            Bitmap new_image = new Bitmap(new_width, new_height);
+            Graphics g = Graphics.FromImage((Image)new_image);
+            g.InterpolationMode = InterpolationMode.High;
+            g.DrawImage(image, 0, 0, new_width, new_height);
+            return new_image;
+        }
     }
 }

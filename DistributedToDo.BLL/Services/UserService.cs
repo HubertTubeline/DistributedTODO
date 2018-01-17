@@ -23,7 +23,7 @@ namespace DistributedToDo.BLL.Services
 
         public async Task<OperationDetails> CreateAsync(UserDTO userDto)
         {
-            var profile = Mapper.Map<UserDTO, ClientProfile>(userDto);
+            ClientProfile profile = Mapper.Map<ClientProfile>(userDto);
 
             ApplicationUser user = await Database.UserManager.FindByEmailAsync(userDto.Email);
             if (user == null)
@@ -49,7 +49,7 @@ namespace DistributedToDo.BLL.Services
 
         public OperationDetails Edit(UserDTO userDto)
         {
-            var profile = Mapper.Map<UserDTO, ClientProfile>(userDto);
+            ClientProfile profile = Mapper.Map<ClientProfile>(userDto);
             try
             {
                 Database.ClientManager.Edit(profile);
@@ -75,7 +75,7 @@ namespace DistributedToDo.BLL.Services
 
         public UserDTO GetUser(string Email)
         {
-            UserDTO userDto = Mapper.Map<ClientProfile,UserDTO>(Database.ClientManager.GetClient(Email));
+            UserDTO userDto = Mapper.Map<UserDTO>(Database.ClientManager.GetClient(Email));
             return userDto;
         }
         public void Dispose()
