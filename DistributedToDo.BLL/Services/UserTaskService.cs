@@ -41,7 +41,7 @@ namespace DistributedToDo.BLL.Services
         {
             try
             {
-                Database.TasksManager.Edit(Mapper.Map<TaskDTO, UserTask>(taskDto));
+                Database.TasksManager.Edit(Mapper.Map<UserTask>(taskDto));
             }
             catch
             {

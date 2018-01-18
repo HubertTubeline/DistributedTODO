@@ -30,7 +30,8 @@ namespace DistributedToDo.DAL.Repositories
                 item.Name = userTask.Name;
                 item.Description = userTask.Description;
                 item.Checked = userTask.Checked;
-                item.UserName = userTask.UserName;
+                if (userTask.Date != new DateTime(0001,01,01)) item.Date = userTask.Date;
+                if (userTask.Time.ToString() != "00:00:00") item.Time = userTask.Time;
                 Database.SaveChanges();
             }
             else

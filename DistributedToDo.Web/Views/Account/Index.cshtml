@@ -3,48 +3,50 @@
 @{
     ViewBag.Title = @Resources.Resource.Account;
 }
-
-<h2 class="col-md-12 col-sm-12">@Resources.Resource.ViewUserInformation: @Model.FirstName @Model.MiddleName @Model.LastName</h2>
-<div class="form-horizontal col-md-offset-0">
-    <div>
-        <img src="@Model.Photo" alt="@Resources.Resource.Photo" class="img-circle" width="150" height="150"/>
-    </div>
-    <div>
-    <h3>@Resources.Resource.Email</h3>
-    <h4>@Model.Email</h4>
+    <div class="row">
+        <h3 class=" col-sm-12 col-md-5 col-xs-12">@Resources.Resource.ViewUserInformation</h3>
+        <h3 class="col-sm-12 col-md-6 col-xs-12">@Model.FirstName @Model.MiddleName @Model.LastName</h3>
     </div>
 
-    <div>
-        <h3>@Resources.Resource.FirstName</h3>
-        <h4>@Model.FirstName</h4>
-    </div>
-
-    @if (Model.MiddleName != null)
+    @if (Model.Photo != null)
     {
-        <div>
-            <h3>@Resources.Resource.MiddleName</h3>
-            <h4>@Model.MiddleName</h4>
-        </div>
+            <img src="@Model.Photo" alt="Не удалось загрузить фотографию :(" class="img-circle" width="150" height="150" />
     }
-
-    <div>
-        <h3>@Resources.Resource.LastName</h3>
-        <h4>@Model.LastName</h4>
-    </div>
-
-    <div>
-        <h3>@Resources.Resource.Number</h3>
-        <h4>@Model.Number</h4>
-    </div>
-
-    @if (Model.Comment != null)
-    {
-        <div>
-            <h3>@Resources.Resource.Comment</h3>
-            <h4>@Model.Comment</h4>
+    <div class="row">
+        <div class="row">
+            <h3 class="col-md-3 col-sm-3">@Resources.Resource.Email</h3>
+            <h3 class="col-md-9 col-sm-9">@Model.Email</h3>
         </div>
-    }
-</div>
-<div>
-    <a href="@Url.Action("Edit")" class="btn btn-default">@Resources.Resource.Edit</a>
-</div>
+
+        <div class="row">
+            <h3 class="col-md-3 col-sm-3">@Resources.Resource.FirstName</h3>
+            <h3 class="col-md-9 col-sm-9">@Model.FirstName</h3>
+        </div>
+
+        @if (Model.MiddleName != null)
+         {
+        <div class="row">
+            <h3 class="col-md-3 col-sm-3">@Resources.Resource.MiddleName</h3>
+            <h3 class="col-md-9 col-sm-9">@Model.MiddleName</h3>
+        </div>
+         }
+
+        <div class="row">
+            <h3 class="col-md-3 col-sm-3">@Resources.Resource.LastName</h3>
+            <h3 class="col-md-9 col-sm-9">@Model.LastName</h3>
+        </div>
+
+        <div class="row">
+            <h3 class="col-md-3 col-sm-3">@Resources.Resource.Number</h3>
+            <h3 class="col-md-9 col-sm-9">@Model.Number</h3>
+        </div>
+
+        @if (Model.Comment != null)
+         {
+        <div class="row">
+            <h3 class="col-md-3 col-sm-3">@Resources.Resource.Comment</h3>
+            <h3 class="col-md-9 col-sm-9">@Model.Comment</h3>
+        </div>
+         }
+        <a href="@Url.Action("Edit")" class="btn btn-default col-xs-12 col-sm-12 col-md-2">@Resources.Resource.Edit</a>
+    </div>

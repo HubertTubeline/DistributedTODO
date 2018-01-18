@@ -135,6 +135,9 @@
   <data name="CreateTask" xml:space="preserve">
     <value>Создать задачу</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Удалить</value>
   </data>
@@ -174,11 +177,20 @@
   <data name="Photo" xml:space="preserve">
     <value>Фотография</value>
   </data>
+  <data name="PleaseActivate" xml:space="preserve">
+    <value>Пожалуйста, активируйте ваш аккаунт с помощью электронной почты</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Регистрация</value>
   </data>
+  <data name="SuccessRegistered" xml:space="preserve">
+    <value>Вы были успешно зарегистрированы</value>
+  </data>
   <data name="Tasks" xml:space="preserve">
     <value>Задачи</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Время</value>
   </data>
   <data name="ToHome" xml:space="preserve">
     <value>На главную</value>

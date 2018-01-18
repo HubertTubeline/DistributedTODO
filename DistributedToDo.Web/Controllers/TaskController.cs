@@ -5,6 +5,7 @@ using DistributedToDo.BLL.Interfaces;
 using DistributedToDo.Web.Filters;
 using DistributedToDo.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
@@ -39,7 +40,7 @@ namespace DistributedToDo.Web.Controllers
         {
             if(action == "edit")
             {
-                return RedirectToAction("Edit", model);
+                return RedirectToAction("Edit", new { taskId = model.Id });
             }
             else if(action == "delete")
             {
@@ -67,8 +68,13 @@ namespace DistributedToDo.Web.Controllers
         [HttpGet]
         public ActionResult Edit(string taskId)
         {
-            TaskModel item = Mapper.Map<TaskModel>(TaskService.GetTask(taskId));
-            return View(item);
+            TaskDTO model = TaskService.GetTask(taskId);
+            if (model.UserName == User.Identity.Name)
+            {
+                TaskModel item = Mapper.Map<TaskModel>(model);
+                return View(item);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

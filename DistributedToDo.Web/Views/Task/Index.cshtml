@@ -6,15 +6,17 @@
 <h4>@ViewBag.Message</h4>
 <h2>@Resources.Resource.Tasks</h2>
 
-@Html.ActionLink(Resources.Resource.CreateTask, "Create",null, new { @class = "btn btn-success" })
+@Html.ActionLink(Resources.Resource.CreateTask, "Create", null, new { @class = "btn btn-success" })
 @foreach (var item in Model)
 {
     using (Html.BeginForm())
     {
-    @Html.HiddenFor(i => i.FirstOrDefault(m => m.Name == item.Name).Id)
-    <h2>@item.Name</h2>
-    <h4>@item.Description</h4>
-    <button name="action" value="edit" class="btn btn-default">@Resources.Resource.Edit</button>
-    <button name="action" value="delete" class="btn btn-danger">@Resources.Resource.Delete</button>
+        @Html.HiddenFor(i => i.FirstOrDefault(m => m.Name == item.Name).Id)
+        <h2>@item.Name</h2>
+        <h3>@item.Description</h3>
+        <h4>@item.Date.ToShortDateString()</h4>
+        <h4>@item.Time.Hours:@item.Time.Minutes</h4>
+        <button name="action" value="edit" class="btn btn-default">@Resources.Resource.Edit</button>
+        <button name="action" value="delete" class="btn btn-danger">@Resources.Resource.Delete</button>
     }
 }
