@@ -1,22 +1,57 @@
 ﻿@model IEnumerable<DistributedToDo.Web.Models.TaskModel>
-
 @{
     ViewBag.Title = "Index";
 }
 <h4>@ViewBag.Message</h4>
 <h2>@Resources.Resource.Tasks</h2>
 
-@Html.ActionLink(Resources.Resource.CreateTask, "Create", null, new { @class = "btn btn-success" })
-@foreach (var item in Model)
-{
-    using (Html.BeginForm())
+<div id="map"></div>
+<br />
+<hr />
+@Html.ActionLink(Resources.Resource.CreateTask, "Create", null, new { @class = "btn btn-success col-md-12 col-lg-12 col-xs-12 col-sm-12" })
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>
+                <h5>@Resources.Resource.Name</h5>
+            </th>
+            <th>
+                <h5>@Resources.Resource.Description</h5>
+            </th>
+            <th>
+                <h5>@Resources.Resource.Date</h5>
+            </th>
+            <th>
+                <h5>@Resources.Resource.Time</h5>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
     {
-        @Html.HiddenFor(i => i.FirstOrDefault(m => m.Name == item.Name).Id)
-        <h2>@item.Name</h2>
-        <h3>@item.Description</h3>
-        <h4>@item.Date.ToShortDateString()</h4>
-        <h4>@item.Time.Hours:@item.Time.Minutes</h4>
-        <button name="action" value="edit" class="btn btn-default">@Resources.Resource.Edit</button>
-        <button name="action" value="delete" class="btn btn-danger">@Resources.Resource.Delete</button>
-    }
+        using (Html.BeginForm())
+        {
+            @Html.Hidden("Id", item.Id)
+            <tr>
+
+                <td>@item.Name
+
+                <td>@item.Description
+
+                <td>@item.Date.ToString("dd.MM.yy")
+
+                <td>@item.Time.ToString(@"hh\:mm")
+                <td><button name="action" value="delete" class="btn btn-danger">@Resources.Resource.Delete</button></td>
+                <td><button name="action" value="edit" class="btn btn-info">@Resources.Resource.Edit</button></td>
+            </tr>
+        }
 }
+    </tbody>
+</table>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUfLVNhJKzJWBFEzqpkgIYwmdkIlRbsh4&callback=initMap"
+        async defer>
+</script>
+
+@Scripts.Render("~/scripts/map.js")

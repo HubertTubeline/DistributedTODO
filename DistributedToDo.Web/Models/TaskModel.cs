@@ -17,5 +17,8 @@ namespace DistributedToDo.Web.Models
         public DateTime Date { get; set; }
         [Required]
         public TimeSpan Time { get; set; }
+
+        public string GeoLong { get; set; }
+        public string GeoLat { get; set; }
     }
 }

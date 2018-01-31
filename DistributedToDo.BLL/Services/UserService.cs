@@ -33,7 +33,7 @@ namespace DistributedToDo.BLL.Services
                 if (result.Errors.Count() > 0)
                     return new OperationDetails(false, result.Errors.FirstOrDefault(), "");
                 // добавляем роль
-                await Database.UserManager.AddToRoleAsync(user.Id, userDto.Role);
+                await Database.UserManager.AddToRoleAsync(user.Id, "User");
                 // создаем профиль клиента
                 ClientProfile clientProfile = profile;
                 clientProfile.Id = user.Id;

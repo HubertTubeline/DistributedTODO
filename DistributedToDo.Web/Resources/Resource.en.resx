@@ -156,11 +156,20 @@
   <data name="FirstName" xml:space="preserve">
     <value>First name</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="LastName" xml:space="preserve">
     <value>Last name</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Logout</value>
   </data>
   <data name="MiddleName" xml:space="preserve">
     <value>Middle name</value>
@@ -182,6 +191,12 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign up</value>
   </data>
   <data name="SuccessRegistered" xml:space="preserve">
     <value>You have been successfully registered</value>

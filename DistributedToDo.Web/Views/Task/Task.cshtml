@@ -1,0 +1,16 @@
+﻿@model DistributedToDo.Web.Models.TaskModel
+
+@using (Html.BeginForm("Index", "Task", FormMethod.Post))
+{
+    @Html.HiddenFor(Model => Model.Id)
+    <h5>@Resources.Resource.Name</h5>
+    @Model.Name
+    <h5>@Resources.Resource.Description</h5>
+    @Model.Description
+    <h5>@Resources.Resource.Date</h5>
+    @Model.Date.ToString("dd.MM.yy")
+    <h5>@Resources.Resource.Time</h5>
+    @Model.Time.ToString(@"hh\:mm")
+    <button id="action" name="action" value="delete" class="btn btn-danger">@Resources.Resource.Delete</button>
+    <button id="action" name="action" value="edit" class="btn btn-info">@Resources.Resource.Edit</button>
+}

@@ -20,34 +20,39 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Tasks","Index","Task")</li>
+                    <li>@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
+                    <li>@Html.ActionLink(Resources.Resource.Tasks, "Index", "Task")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (!User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Войти", "Login", "Account")</li>
-                        <li>@Html.ActionLink("Регистрация", "Register", "Account")</li>
-                    }
-                    else
-                    {
-                        <li><img src="/Files/@String.Concat(User.Identity.Name,".png")" width="50" height="50" class="img-circle" alt=""/></li>
-                        <li>@Html.ActionLink(User.Identity.Name, "Index", "Account")</li>
-                        <li>@Html.ActionLink("Выход", "Logout", "Account")</li>
-                    }
-                        <li>@Html.ActionLink("en", "ChangeCulture", "Home", new { locale = "en" }, null)</li>
-                        <li>@Html.ActionLink("ru", "ChangeCulture", "Home", new { locale = "ru" }, null)</li>
-                </ul>
-            </div>
+            {
+                <li>@Html.ActionLink(Resources.Resource.SignIn, "Login", "Account")</li>
+                <li>@Html.ActionLink(Resources.Resource.SignUp, "Register", "Account")</li>
+    }
+    else
+    {
+        <li><img src="/Files/@String.Concat(User.Identity.Name,".png")" width="50" height="50" class="img-circle" alt="" /></li>
+        <li>@Html.ActionLink(User.Identity.Name, "Index", "Account")</li>
+        <li>@Html.ActionLink(Resources.Resource.LogOut, "Logout", "Account")</li>
+}
+        <li>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                @Resources.Resource.Language
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("English", "ChangeCulture", "Home", new { locale = "en" }, null)</li>
+                <li>@Html.ActionLink("Русский", "ChangeCulture", "Home", new { locale = "ru" }, null)</li>
+            </ul>
+            </ul>
+        </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Simple "To Do List" website.</p>
+            <p>&copy; @DateTime.Now.Year - Vitasya co.</p>
         </footer>
     </div>
 

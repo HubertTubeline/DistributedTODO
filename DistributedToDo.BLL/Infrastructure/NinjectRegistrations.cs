@@ -8,7 +8,7 @@ namespace DistributedToDo.BLL.Infrastructure
     {
         public override void Load()
         {
-            Bind<IUnitOfWork>().To<UnitOfWork>().WithConstructorArgument("connectionString", "Identity");
+            Bind<IUnitOfWork>().To<UnitOfWork>().WithConstructorArgument("connectionString", "Users");
         }
     }
 }

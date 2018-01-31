@@ -32,6 +32,8 @@ namespace DistributedToDo.DAL.Repositories
                 item.Checked = userTask.Checked;
                 if (userTask.Date != new DateTime(0001,01,01)) item.Date = userTask.Date;
                 if (userTask.Time.ToString() != "00:00:00") item.Time = userTask.Time;
+                item.GeoLat = userTask.GeoLat;
+                item.GeoLong = userTask.GeoLong;
                 Database.SaveChanges();
             }
             else

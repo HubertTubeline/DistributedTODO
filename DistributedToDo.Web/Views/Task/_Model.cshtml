@@ -1,0 +1,13 @@
+﻿@model DistributedToDo.Web.Models.TaskModel
+
+@Html.HiddenFor(model => model.Id)
+<h3>@Resources.Resource.Name</h3>
+<h4>@Model.Name</h4>
+<h3>@Resources.Resource.Description</h3>
+<h4>@Model.Description</h4>
+<h3>@Resources.Resource.Date</h3>
+<h4>@Model.Date.ToString("yyyy-MM-dd")</h4>
+<h3>@Resources.Resource.Time</h3>
+<h4>@Model.Time.ToString(@"hh\:mm")</h4>
+
+<button id="action" name="action" value="edit" class="btn btn-success">@Resources.Resource.Edit</button>

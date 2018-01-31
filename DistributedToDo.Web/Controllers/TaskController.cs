@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
+using Google.Maps;
 
 namespace DistributedToDo.Web.Controllers
 {
@@ -28,7 +29,7 @@ namespace DistributedToDo.Web.Controllers
         {
             TaskService = userTaskService;
         }
-
+        [HttpGet]
         public ActionResult Index()
         {
             IEnumerable<TaskModel> item = Mapper.Map<IEnumerable<TaskModel>>(TaskService.GetTasks(User.Identity.Name));
@@ -38,11 +39,11 @@ namespace DistributedToDo.Web.Controllers
         [HttpPost]
         public ActionResult Index(TaskModel model, string action)
         {
-            if(action == "edit")
+            if (action == "edit")
             {
                 return RedirectToAction("Edit", new { taskId = model.Id });
             }
-            else if(action == "delete")
+            else if (action == "delete")
             {
                 return RedirectToAction("Delete", model);
             }
@@ -65,6 +66,7 @@ namespace DistributedToDo.Web.Controllers
             ViewBag.Message = details.Message;
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public ActionResult Edit(string taskId)
         {
@@ -86,6 +88,7 @@ namespace DistributedToDo.Web.Controllers
             ViewBag.Message = details.Message;
             return RedirectToAction("Index");
         }
+
 
         public ActionResult Delete(TaskModel model)
         {
