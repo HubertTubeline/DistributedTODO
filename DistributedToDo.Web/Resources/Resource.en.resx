@@ -213,4 +213,7 @@
   <data name="ViewUserInformation" xml:space="preserve">
     <value>View user information</value>
   </data>
+  <data name="Check" xml:space="preserve">
+    <value>Check</value>
+  </data>
 </root>

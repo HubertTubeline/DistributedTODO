@@ -43,9 +43,9 @@ namespace DistributedToDo.Web.Controllers
             {
                 return RedirectToAction("Edit", new { taskId = model.Id });
             }
-            else if (action == "delete")
+            else if (action == "check")
             {
-                return RedirectToAction("Delete", model);
+                return RedirectToAction("Check", new { taskId = model.Id });
             }
             IEnumerable<TaskModel> item = Mapper.Map<IEnumerable<TaskModel>>(TaskService.GetTasks(User.Identity.Name));
             return View(item);
@@ -89,12 +89,13 @@ namespace DistributedToDo.Web.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public ActionResult Delete(TaskModel model)
+        public ActionResult Check(string taskId)
         {
-            var item = Mapper.Map<TaskDTO>(model);
-            item.UserName = User.Identity.Name;
-            TaskService.Delete(item);
+            TaskDTO task = TaskService.GetTask(taskId);
+            if (task.UserName == User.Identity.Name)
+            {
+                TaskService.Delete(task);
+            }
             return RedirectToAction("Index");
         }
     }

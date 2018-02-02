@@ -7,51 +7,44 @@
 
 <div id="map"></div>
 <br />
+@Html.ActionLink(Resources.Resource.CreateTask, "Create", null, new { @class = "btn btn-success col-sm-offset-1 col-md-offset-1 col-md-10 col-lg-10 col-lg-offset-1 col-xs-12 col-sm-10" })
+<br />
 <hr />
-@Html.ActionLink(Resources.Resource.CreateTask, "Create", null, new { @class = "btn btn-success col-md-12 col-lg-12 col-xs-12 col-sm-12" })
-<table class="table table-responsive">
-    <thead>
-        <tr>
-            <th>
-                <h5>@Resources.Resource.Name</h5>
-            </th>
-            <th>
-                <h5>@Resources.Resource.Description</h5>
-            </th>
-            <th>
-                <h5>@Resources.Resource.Date</h5>
-            </th>
-            <th>
-                <h5>@Resources.Resource.Time</h5>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
+    @foreach (var item in Model)
     {
         using (Html.BeginForm())
         {
-            @Html.Hidden("Id", item.Id)
-            <tr>
+            <div class="panel panel-group panel-default">
+                @Html.Hidden("Id", item.Id)
+                <div class="panel-heading">
+                    <span class="btn-group">
+                        <button class="btn btn-group btn-success" name="action" value="check"><span class="glyphicon glyphicon-check"></span></button>
+                        <span class="btn btn-group btn-default dropdown" data-toggle="collapse" data-target="#@item.Id">
+                            @item.Name
+                        </span>
+                    </span>
+                </div>
+                <div class="panel-body collapse" id="@item.Id">
+                    <div>
+                        <p class="well-sm well">@item.Description</p>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    @item.Date.ToString("dd.MM.yy")
+                    <span class="glyphicon glyphicon-time">  </span>
+                    @item.Time.ToString(@"hh\:mm")
 
-                <td>@item.Name
-
-                <td>@item.Description
-
-                <td>@item.Date.ToString("dd.MM.yy")
-
-                <td>@item.Time.ToString(@"hh\:mm")
-                <td><button name="action" value="delete" class="btn btn-danger">@Resources.Resource.Delete</button></td>
-                <td><button name="action" value="edit" class="btn btn-info">@Resources.Resource.Edit</button></td>
-            </tr>
+                    <button class="btn btn-sm btn-info" name="action" value="edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        @Resources.Resource.Edit
+                    </button>
+                </div>
+            </div>
         }
-}
-    </tbody>
-</table>
+    }
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUfLVNhJKzJWBFEzqpkgIYwmdkIlRbsh4&callback=initMap"
+            async defer>
+    </script>
 
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUfLVNhJKzJWBFEzqpkgIYwmdkIlRbsh4&callback=initMap"
-        async defer>
-</script>
-
-@Scripts.Render("~/scripts/map.js")
+    @Scripts.Render("~/scripts/map.js")

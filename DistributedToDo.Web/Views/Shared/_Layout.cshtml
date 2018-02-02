@@ -22,6 +22,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
                     <li>@Html.ActionLink(Resources.Resource.Tasks, "Index", "Task")</li>
+                    <li>@Html.ActionLink(Resources.Resource.CreateTask,"Create","Task")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (!User.Identity.IsAuthenticated)
@@ -31,8 +32,11 @@
     }
     else
     {
-        <li><img src="/Files/@String.Concat(User.Identity.Name,".png")" width="50" height="50" class="img-circle" alt="" /></li>
-        <li>@Html.ActionLink(User.Identity.Name, "Index", "Account")</li>
+        <li><span>
+    <img src="/Files/@String.Concat(User.Identity.Name,".png")" width="50" height="50" class="img-circle" alt="" />
+    <span>@Html.ActionLink(User.Identity.Name, "Index", "Account")</span>
+</span>
+    </li>
         <li>@Html.ActionLink(Resources.Resource.LogOut, "Logout", "Account")</li>
 }
         <li>
@@ -50,8 +54,8 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
+        <hr class="col-lg-12 col-sm-12 col-md-12 col-xs-12" />
+        <footer class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
             <p>&copy; @DateTime.Now.Year - Vitasya co.</p>
         </footer>
     </div>
