@@ -286,6 +286,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Выберите место на карте.
+        /// </summary>
+        public static string SelectPlace {
+            get {
+                return ResourceManager.GetString("SelectPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Вход.
         /// </summary>
         public static string SignIn {

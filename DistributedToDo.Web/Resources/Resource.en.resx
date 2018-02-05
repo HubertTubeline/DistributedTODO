@@ -216,4 +216,7 @@
   <data name="Check" xml:space="preserve">
     <value>Check</value>
   </data>
+  <data name="SelectPlace" xml:space="preserve">
+    <value>Select a place on the map</value>
+  </data>
 </root>

@@ -10,6 +10,10 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Google.Maps;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using GeoJSON.Net.Geometry;
+using System.Collections;
 
 namespace DistributedToDo.Web.Controllers
 {
@@ -32,7 +36,19 @@ namespace DistributedToDo.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            List<GeoLocation> taskMarkers = new List<GeoLocation>();
             IEnumerable<TaskModel> item = Mapper.Map<IEnumerable<TaskModel>>(TaskService.GetTasks(User.Identity.Name));
+            int taskIndex = 0;
+            char label = 'A';
+            foreach (TaskModel x in item)
+            {
+                taskIndex++;
+                taskMarkers.Add(new GeoLocation { Label = label, Name = x.Name, GeoLat = x.GeoLat, GeoLong = x.GeoLong });
+                x.Label = label++;
+                if (label == '[') label = 'a';
+            }
+            ViewBag.taskindex = taskIndex;
+            ViewBag.taskMarkers = taskMarkers;
             return View(item);
         }
 
@@ -62,6 +78,7 @@ namespace DistributedToDo.Web.Controllers
         {
             TaskDTO item = Mapper.Map<TaskDTO>(model);
             item.UserName = User.Identity.Name;
+
             OperationDetails details = TaskService.Create(item);
             ViewBag.Message = details.Message;
             return RedirectToAction("Index");

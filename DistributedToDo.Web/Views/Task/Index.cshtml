@@ -4,47 +4,89 @@
 }
 <h4>@ViewBag.Message</h4>
 <h2>@Resources.Resource.Tasks</h2>
-
 <div id="map"></div>
 <br />
 @Html.ActionLink(Resources.Resource.CreateTask, "Create", null, new { @class = "btn btn-success col-sm-offset-1 col-md-offset-1 col-md-10 col-lg-10 col-lg-offset-1 col-xs-12 col-sm-10" })
 <br />
 <hr />
-    @foreach (var item in Model)
-    {
-        using (Html.BeginForm())
-        {
-            <div class="panel panel-group panel-default">
-                @Html.Hidden("Id", item.Id)
-                <div class="panel-heading">
-                    <span class="btn-group">
-                        <button class="btn btn-group btn-success" name="action" value="check"><span class="glyphicon glyphicon-check"></span></button>
-                        <span class="btn btn-group btn-default dropdown" data-toggle="collapse" data-target="#@item.Id">
-                            @item.Name
-                        </span>
-                    </span>
-                </div>
-                <div class="panel-body collapse" id="@item.Id">
-                    <div>
-                        <p class="well-sm well">@item.Description</p>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                    @item.Date.ToString("dd.MM.yy")
-                    <span class="glyphicon glyphicon-time">  </span>
-                    @item.Time.ToString(@"hh\:mm")
+<script>
+    function initMap() {
+        var array = @Html.Raw(Json.Encode(@ViewBag.taskMarkers));
+        var point = new google.maps.LatLng(array[0].GeoLat, array[0].GeoLong)
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: point,
+            zoom: 6
+        });
+        /*var infoWindow = new google.maps.InfoWindow({ map: map });
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
 
-                    <button class="btn btn-sm btn-info" name="action" value="edit">
-                        <span class="glyphicon glyphicon-edit"></span>
-                        @Resources.Resource.Edit
-                    </button>
-                </div>
-            </div>
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Location found.');
+                map.setCenter(pos);
+            }, function () {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }*/
+        for (var i = 0; i < array.length; i++) {
+            var point = new google.maps.LatLng(array[i].GeoLat, array[i].GeoLong);
+            var marker = new google.maps.Marker ({
+                position: point,
+                map: map,
+                label: array[i].Label,
+                title: "" + i
+            });
         }
     }
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUfLVNhJKzJWBFEzqpkgIYwmdkIlRbsh4&callback=initMap"
-            async defer>
-    </script>
 
-    @Scripts.Render("~/scripts/map.js")
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+    }
+
+</script>
+@foreach (var item in Model)
+{
+    using (Html.BeginForm())
+    {
+        <div class="panel panel-group panel-default">
+            @Html.Hidden("Id", item.Id)
+            <div class="panel-heading">
+                <span class="btn-group">
+                    <button class="btn btn-group btn-success" name="action" value="check"><span class="glyphicon glyphicon-check"></span></button>
+                    <span class="btn btn-group btn-default dropdown" data-toggle="collapse" data-target="#@item.Id">
+                        @item.Name <span class="badge :empty">@item.Label</span>
+                    </span>
+                </span>
+            </div>
+            <div class="panel-body collapse" id="@item.Id">
+                <div>
+                    <p class="well-sm well">@item.Description</p>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <span class="glyphicon glyphicon-calendar"></span>
+                @item.Date.ToString("dd.MM.yy")
+                <span class="glyphicon glyphicon-time">  </span>
+                @item.Time.ToString(@"hh\:mm")
+                <button class="btn btn-sm btn-info" name="action" value="edit">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    @Resources.Resource.Edit
+                </button>
+            </div>
+        </div>
+    }
+}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUfLVNhJKzJWBFEzqpkgIYwmdkIlRbsh4&callback=initMap"
+        async defer>
+</script>
