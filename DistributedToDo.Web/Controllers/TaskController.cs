@@ -78,7 +78,8 @@ namespace DistributedToDo.Web.Controllers
         {
             TaskDTO item = Mapper.Map<TaskDTO>(model);
             item.UserName = User.Identity.Name;
-
+            if(item.GeoLat == "0" && item.GeoLong == "0")
+                item.GeoLat = item.GeoLong = null;
             OperationDetails details = TaskService.Create(item);
             ViewBag.Message = details.Message;
             return RedirectToAction("Index");
