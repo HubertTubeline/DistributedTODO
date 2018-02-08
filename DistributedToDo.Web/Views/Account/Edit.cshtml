@@ -3,71 +3,86 @@
 @{
     ViewBag.Title = @Resources.Resource.Account;
 }
-
-<h2>@Resources.Resource.EditAccountInformation</h2>
-
+<script>
+    document.getElementById("profile-nav").classList.add('active');
+</script>
+@Html.ValidationSummary()
 @using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <span class="control-label col-md-2">@Resources.Resource.Email</span>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-heading list-group-item-info h4">@Resources.Resource.EditAccountInformation</li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.Email</div>
+                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, Resources.Resource.ErrorEmail, new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        </li>
 
-        <div class="form-group">
-            <span class="control-label col-md-2">@Resources.Resource.FirstName</span>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.FirstName</div>
+                <div class="col-lg-4 col-md-8 col-sm-8 col-xs-12">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, Resources.Resource.ErrorRequired, new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        </li>
 
-        <div class="form-group">
-            <span class="control-label col-md-2">@Resources.Resource.MiddleName</span>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.MiddleName</div>
+                <div class="col-lg-4 col-md-8 col-sm-8 col-xs-12">
+                    @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        </li>
 
-        <div class="form-group">
-            <span class="control-label col-md-2">@Resources.Resource.LastName</span>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.LastName</div>
+                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, Resources.Resource.ErrorRequired, new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        </li>
 
-        <div class="form-group">
-            <span class="control-label col-md-2">@Resources.Resource.Number</span>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.Number</div>
+                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                    @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Number, Resources.Resource.ErrorRequired, new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        </li>
 
-        <div class="form-group">
-            <span class="control-label col-md-2">@Resources.Resource.Comment</span>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.Comment</div>
+                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                    @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        </li>
 
-        <div class="form-group">
-            <span class="control-label col-md-2">@Resources.Resource.Photo</span>
-            <div class="col-md-10">
-                <input type="file" name="image" />
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.Photo</div>
+                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+                    <input type="file" name="image" />
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="@Resources.Resource.Edit" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+        </li>
+    </ul>
+    <input type="submit" value="@Resources.Resource.Edit" class="btn btn-default col-xs-12 col-lg-2 col-md-2 col-sm-4" />
 }
+@Scripts.Render("~/Scripts/jquery-3.3.1.js")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/Scripts/jquery.validate.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.js")

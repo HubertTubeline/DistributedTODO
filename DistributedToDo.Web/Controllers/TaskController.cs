@@ -76,13 +76,17 @@ namespace DistributedToDo.Web.Controllers
         [HttpPost]
         public ActionResult Create(TaskModel model)
         {
-            TaskDTO item = Mapper.Map<TaskDTO>(model);
-            item.UserName = User.Identity.Name;
-            if(item.GeoLat == "0" && item.GeoLong == "0")
-                item.GeoLat = item.GeoLong = null;
-            OperationDetails details = TaskService.Create(item);
-            ViewBag.Message = details.Message;
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                TaskDTO item = Mapper.Map<TaskDTO>(model);
+                item.UserName = User.Identity.Name;
+                if (item.GeoLat == "0" && item.GeoLong == "0")
+                    item.GeoLat = item.GeoLong = null;
+                OperationDetails details = TaskService.Create(item);
+                ViewBag.Message = details.Message;
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
 
         [HttpGet]
@@ -100,11 +104,15 @@ namespace DistributedToDo.Web.Controllers
         [HttpPost]
         public ActionResult Edit(TaskModel model)
         {
-            TaskDTO item = Mapper.Map<TaskDTO>(model);
-            item.UserName = User.Identity.Name;
-            OperationDetails details = TaskService.Edit(item);
-            ViewBag.Message = details.Message;
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                TaskDTO item = Mapper.Map<TaskDTO>(model);
+                item.UserName = User.Identity.Name;
+                OperationDetails details = TaskService.Edit(item);
+                ViewBag.Message = details.Message;
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
 
         public ActionResult Check(string taskId)

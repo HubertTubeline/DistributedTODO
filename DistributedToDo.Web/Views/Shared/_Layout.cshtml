@@ -20,23 +20,21 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
-                    <li>@Html.ActionLink(Resources.Resource.Tasks, "Index", "Task")</li>
-                    <li>@Html.ActionLink(Resources.Resource.CreateTask,"Create","Task")</li>
+                    <li id="home-nav">@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
+                    <li id="tasks-nav">@Html.ActionLink(Resources.Resource.Tasks, "Index", "Task")</li>
+                    <li id="create-nav">@Html.ActionLink(Resources.Resource.CreateTask,"Create","Task")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (!User.Identity.IsAuthenticated)
             {
-                <li>@Html.ActionLink(Resources.Resource.SignIn, "Login", "Account")</li>
-                <li>@Html.ActionLink(Resources.Resource.SignUp, "Register", "Account")</li>
+                <li id="signIn-nav">@Html.ActionLink(Resources.Resource.SignIn, "Login", "Account")</li>
+                <li id="signUp-nav">@Html.ActionLink(Resources.Resource.SignUp, "Register", "Account")</li>
     }
     else
     {
-        <li><span>
-    <img src="/Files/@String.Concat(User.Identity.Name,".png")" width="50" height="50" class="img-circle" alt="" />
-    <span>@Html.ActionLink(User.Identity.Name, "Index", "Account")</span>
-</span>
-    </li>
+        <li id="profile-nav">
+        <a href="@Url.Action("Index","Account")"><span class="glyphicon glyphicon-user"></span> @Resources.Resource.Profile</a>
+        </li>
         <li>@Html.ActionLink(Resources.Resource.LogOut, "Logout", "Account")</li>
 }
         <li>

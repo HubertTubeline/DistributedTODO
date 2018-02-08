@@ -219,4 +219,16 @@
   <data name="SelectPlace" xml:space="preserve">
     <value>Select a place on the map</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorEmail" xml:space="preserve">
+    <value>Enter a valid E-mail adress</value>
+  </data>
+  <data name="ErrorRequired" xml:space="preserve">
+    <value>The field can not be empty</value>
+  </data>
 </root>

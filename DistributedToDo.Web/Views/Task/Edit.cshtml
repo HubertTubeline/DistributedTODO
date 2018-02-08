@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = Resources.Resource.Edit;
 }
-
+<script>
+    document.getElementById("tasks-nav").classList.add('active');
+</script>
 <h2>@Resources.Resource.Edit</h2>
 @using (Html.BeginForm("Edit", "Task", FormMethod.Post))
 {
@@ -15,28 +17,28 @@
         <span class="control-label col-md-2">@Resources.Resource.Name</span>
         <div class="col-md-10">
             @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.Name, Resources.Resource.ErrorRequired, new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         <span class="control-label col-md-2">@Resources.Resource.Description</span>
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            <textarea class="form-control" rows="3" id="Description" name="Description" cols="20">@Model.Description</textarea>
+            @Html.ValidationMessageFor(model => model.Description, Resources.Resource.ErrorRequired, new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         <span class="control-label col-md-2">@Resources.Resource.Date</span>
         <div class="col-md-10">
-            <input type="date" name="Date" value="@Model.Date.ToString("yyyy-MM-dd")" />
+            <input class="form-control" type="date" name="Date" value="@Model.Date.ToString("yyyy-MM-dd")" />
         </div>
     </div>
     <div class="form-group">
         <span class="control-label col-md-2">@Resources.Resource.Time</span>
         <div class="col-md-10">
-            <input type="time" name="Time" value="@Model.Time.ToString(@"hh\:mm")" />
+            <input class="form-control" type="time" name="Time" value="@Model.Time.ToString(@"hh\:mm")" />
         </div>
     </div>
     <input type="hidden" id="geoLat" name="GeoLat" value="@Model.GeoLat" />

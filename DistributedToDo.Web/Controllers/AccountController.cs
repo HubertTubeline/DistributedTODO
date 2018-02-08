@@ -54,17 +54,21 @@ namespace DistributedToDo.Web.Controllers
         [HttpPost]
         public ActionResult Edit(AccountModel user, HttpPostedFileBase image)
         {
-            UserDTO model = Mapper.Map<UserDTO>(user);
-            if (image != null)
+            if (ModelState.IsValid)
             {
-                string path = Server.MapPath("~/Files/" + model.Email + ".png");
-                Image img = Image.FromStream(image.InputStream);
-                img = resizeImage(img, 150, 150); //Ресайз изображения до размера 150х150
-                img.Save(path, System.Drawing.Imaging.ImageFormat.Png);
-                model.Photo = "/Files/" + model.Email + ".png";
+                UserDTO model = Mapper.Map<UserDTO>(user);
+                if (image != null)
+                {
+                    string path = Server.MapPath("~/Files/" + model.Email + ".png");
+                    Image img = Image.FromStream(image.InputStream);
+                    img = resizeImage(img, 150, 150); //Ресайз изображения до размера 150х150
+                    img.Save(path, System.Drawing.Imaging.ImageFormat.Png);
+                    model.Photo = "/Files/" + model.Email + ".png";
+                }
+                UserService.Edit(model);
+                return RedirectToAction("Index");
             }
-            UserService.Edit(model);
-            return RedirectToAction("Index");
+            return View(user);
         }
 
         public ActionResult Login()

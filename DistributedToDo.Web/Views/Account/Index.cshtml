@@ -3,50 +3,70 @@
 @{
     ViewBag.Title = @Resources.Resource.Account;
 }
-    <div class="row">
-        <h3 class=" col-sm-12 col-md-5 col-xs-12">@Resources.Resource.ViewUserInformation</h3>
-        <h3 class="col-sm-12 col-md-6 col-xs-12">@Model.FirstName @Model.MiddleName @Model.LastName</h3>
-    </div>
+<script>
+    document.getElementById("profile-nav").classList.add('active');
+</script>
+<div>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-heading h4 list-group-item-info">
+                    @Resources.Resource.ViewUserInformation
+            </li>
+            <li class="list-group-item">
+                @if (Model.Photo != null)
+        {
+            <img src="@Model.Photo" alt="@Resources.Resource.Error" class="img-circle" width="150" height="150" />
+}
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.Email</div>
+                    <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">@Model.Email</div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.FirstName</div>
+                    <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">@Model.FirstName</div>
+                </div>
+            </li>
 
-    @if (Model.Photo != null)
+            @if (Model.MiddleName != null)
     {
-            <img src="@Model.Photo" alt="Не удалось загрузить фотографию :(" class="img-circle" width="150" height="150" />
-    }
-    <div class="row">
-        <div class="row">
-            <h3 class="col-md-3 col-sm-3">@Resources.Resource.Email</h3>
-            <h3 class="col-md-9 col-sm-9">@Model.Email</h3>
-        </div>
 
-        <div class="row">
-            <h3 class="col-md-3 col-sm-3">@Resources.Resource.FirstName</h3>
-            <h3 class="col-md-9 col-sm-9">@Model.FirstName</h3>
-        </div>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.MiddleName</div>
+                    <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">@Model.MiddleName</div>
+                </div>
+            </li>
 
-        @if (Model.MiddleName != null)
-         {
-        <div class="row">
-            <h3 class="col-md-3 col-sm-3">@Resources.Resource.MiddleName</h3>
-            <h3 class="col-md-9 col-sm-9">@Model.MiddleName</h3>
-        </div>
-         }
+}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.LastName</div>
+                    <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">@Model.LastName</div>
+                </div>
+            </li>
 
-        <div class="row">
-            <h3 class="col-md-3 col-sm-3">@Resources.Resource.LastName</h3>
-            <h3 class="col-md-9 col-sm-9">@Model.LastName</h3>
-        </div>
 
-        <div class="row">
-            <h3 class="col-md-3 col-sm-3">@Resources.Resource.Number</h3>
-            <h3 class="col-md-9 col-sm-9">@Model.Number</h3>
-        </div>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.Number</div>
+                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">@Model.Number</div>
+            </div>
+        </li>
 
-        @if (Model.Comment != null)
-         {
-        <div class="row">
-            <h3 class="col-md-3 col-sm-3">@Resources.Resource.Comment</h3>
-            <h3 class="col-md-9 col-sm-9">@Model.Comment</h3>
-        </div>
-         }
-        <a href="@Url.Action("Edit")" class="btn btn-default col-xs-12 col-sm-12 col-md-2">@Resources.Resource.Edit</a>
-    </div>
+
+            @if (Model.Comment != null)
+    {
+
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">@Resources.Resource.Comment</div>
+                <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">@Model.Comment</div>
+            </div>
+        </li>
+}
+        </ul>
+</div>
+        <a href="@Url.Action("Edit")" class="btn btn-default col-xs-12 col-lg-2 col-md-2 col-sm-4">@Resources.Resource.Edit</a>
