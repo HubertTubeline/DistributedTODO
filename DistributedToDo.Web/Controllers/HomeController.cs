@@ -11,6 +11,7 @@ namespace DistributedToDo.Web.Controllers
     [Culture]
     public class HomeController : Controller
     {
+        
         private IUserService UserService
         {
             get
@@ -18,24 +19,26 @@ namespace DistributedToDo.Web.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<IUserService>();
             }
         }
+        private IUserTaskService UserTaskService;
+
+        public HomeController(IUserTaskService userTaskService)
+        {
+            UserTaskService = userTaskService;
+        }
 
         public ActionResult Index()
         {
+            ViewBag.UsersCount = UserService.GetUsersCount();
+            ViewBag.TasksCount = UserTaskService.GetTasksCount();
             return View();
         }
-        [Authorize(Roles = "admin")]
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
         public ActionResult Contact()
         { 
             return View();
         }
 
-        public ActionResult ChangeCulture(string locale)
+        public ActionResult ChangeCulture(string locale, string actionName, string controllerName)
         {
             if (locale != "en")
                 locale = "ru";
@@ -52,7 +55,8 @@ namespace DistributedToDo.Web.Controllers
                 cookie.Expires = DateTime.Now.AddYears(1);
             }
             Response.Cookies.Add(cookie);
-            return RedirectToAction("Index");
+            return RedirectToAction(actionName, controllerName);
+
         }
     }
 }

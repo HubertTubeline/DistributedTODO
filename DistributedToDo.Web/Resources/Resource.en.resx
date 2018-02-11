@@ -231,4 +231,22 @@
   <data name="ErrorRequired" xml:space="preserve">
     <value>The field can not be empty</value>
   </data>
+  <data name="AllYourTasks" xml:space="preserve">
+    <value>All your business before the next life.</value>
+  </data>
+  <data name="OurHelpTasks" xml:space="preserve">
+    <value>tasks were created</value>
+  </data>
+  <data name="SupportUsers" xml:space="preserve">
+    <value>users</value>
+  </data>
+  <data name="WeGotSupport" xml:space="preserve">
+    <value>We got support of</value>
+  </data>
+  <data name="WhereverYouAre" xml:space="preserve">
+    <value>Wherever you are.</value>
+  </data>
+  <data name="WithOurHelp" xml:space="preserve">
+    <value>With our help</value>
+  </data>
 </root>

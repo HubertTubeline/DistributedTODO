@@ -11,6 +11,7 @@ namespace DistributedToDo.BLL.Interfaces
         Task<OperationDetails> CreateAsync(UserDTO userDto);
         Task<ClaimsIdentity> Authenticate(UserDTO userDto);
         UserDTO GetUser(string Email);
+        int GetUsersCount();
         OperationDetails Edit(UserDTO userDto);
     }
 }

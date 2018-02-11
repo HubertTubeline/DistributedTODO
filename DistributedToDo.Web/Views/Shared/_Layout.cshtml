@@ -6,8 +6,13 @@
     <title>@ViewBag.Title - Distributed TODO</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
+    @{
+        var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+        var actionName = this.ViewContext.RouteData.Values["action"].ToString();
+    }
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -16,41 +21,52 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Distributed To Do", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="#" class="headname navbar-brand">Distributed To Do</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li id="home-nav">@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
                     <li id="tasks-nav">@Html.ActionLink(Resources.Resource.Tasks, "Index", "Task")</li>
-                    <li id="create-nav">@Html.ActionLink(Resources.Resource.CreateTask,"Create","Task")</li>
+                    <li id="create-nav">@Html.ActionLink(Resources.Resource.CreateTask, "Create", "Task")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (!User.Identity.IsAuthenticated)
-            {
-                <li id="signIn-nav">@Html.ActionLink(Resources.Resource.SignIn, "Login", "Account")</li>
-                <li id="signUp-nav">@Html.ActionLink(Resources.Resource.SignUp, "Register", "Account")</li>
-    }
-    else
-    {
-        <li id="profile-nav">
-        <a href="@Url.Action("Index","Account")"><span class="glyphicon glyphicon-user"></span> @Resources.Resource.Profile</a>
-        </li>
-        <li>@Html.ActionLink(Resources.Resource.LogOut, "Logout", "Account")</li>
-}
-        <li>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                @Resources.Resource.Language
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li>@Html.ActionLink("English", "ChangeCulture", "Home", new { locale = "en" }, null)</li>
-                <li>@Html.ActionLink("Русский", "ChangeCulture", "Home", new { locale = "ru" }, null)</li>
-            </ul>
-            </ul>
-        </div>
+                    {
+                        <li id="signIn-nav">@Html.ActionLink(Resources.Resource.SignIn, "Login", "Account")</li>
+                        <li id="signUp-nav">@Html.ActionLink(Resources.Resource.SignUp, "Register", "Account")</li>
+                    }
+                    else
+                    {
+                        <li id="profile-nav">
+                            <a href="@Url.Action("Index","Account")"><span class="glyphicon glyphicon-user"></span> @Resources.Resource.Profile</a>
+                        </li>
+                        <li>@Html.ActionLink(Resources.Resource.LogOut, "Logout", "Account")</li>
+                    }
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            @Resources.Resource.Language
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @Html.ActionLink("English", "ChangeCulture", "Home", new { locale = "en", actionName = actionName,
+                               controllerName = controllerName
+                           },
+                                    null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Русский", "ChangeCulture", "Home", new { locale = "ru",
+                               actionName = actionName,
+                               controllerName = controllerName
+                           },
+                                    null)
+                            </li>
+                        </ul>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content col-lg-12 col-sm-12 col-md-12 col-xs-12">
         @RenderBody()
         <hr class="col-lg-12 col-sm-12 col-md-12 col-xs-12" />
         <footer class="col-lg-12 col-sm-12 col-md-12 col-xs-12">

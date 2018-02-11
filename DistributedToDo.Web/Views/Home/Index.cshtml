@@ -4,4 +4,16 @@
 <script>
     document.getElementById("home-nav").classList.add('active');
 </script>
-<h2>@User.Identity.Name</h2>
+
+<div id="headerwrap">
+    @Resources.Resource.AllYourTasks @Resources.Resource.WhereverYouAre
+</div>
+<div id="bodywrap">
+    <div class="block">
+        @Resources.Resource.WeGotSupport @ViewBag.UsersCount @Resources.Resource.SupportUsers
+    </div>
+    <div class="block">
+        @Resources.Resource.WithOurHelp @ViewBag.TasksCount @Resources.Resource.OurHelpTasks
+    </div>
+</div>
+<link rel="stylesheet" href="~/Content/Home.css" />

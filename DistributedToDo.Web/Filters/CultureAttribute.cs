@@ -24,7 +24,6 @@ namespace DistributedToDo.Web.Filters
                 cultureName = cultureCookie.Value;
             else
                 cultureName = "ru";
-
             // Список культур
             List<string> cultures = new List<string>() { "ru", "en" };
             if (!cultures.Contains(cultureName))

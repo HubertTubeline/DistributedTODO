@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Все Ваши дела на ближайшую жизнь..
+        /// </summary>
+        public static string AllYourTasks {
+            get {
+                return ResourceManager.GetString("AllYourTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Выполнить.
         /// </summary>
         public static string Check {
@@ -277,6 +286,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на задач.
+        /// </summary>
+        public static string OurHelpTasks {
+            get {
+                return ResourceManager.GetString("OurHelpTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Пароль.
         /// </summary>
         public static string Password {
@@ -358,6 +376,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на пользователей.
+        /// </summary>
+        public static string SupportUsers {
+            get {
+                return ResourceManager.GetString("SupportUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Задачи.
         /// </summary>
         public static string Tasks {
@@ -390,6 +417,33 @@ namespace Resources {
         public static string ViewUserInformation {
             get {
                 return ResourceManager.GetString("ViewUserInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Мы заручились поддержкой.
+        /// </summary>
+        public static string WeGotSupport {
+            get {
+                return ResourceManager.GetString("WeGotSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Где бы Вы не находились..
+        /// </summary>
+        public static string WhereverYouAre {
+            get {
+                return ResourceManager.GetString("WhereverYouAre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на С нашей помощью было создано.
+        /// </summary>
+        public static string WithOurHelp {
+            get {
+                return ResourceManager.GetString("WithOurHelp", resourceCulture);
             }
         }
     }

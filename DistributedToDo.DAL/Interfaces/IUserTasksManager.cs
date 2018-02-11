@@ -10,5 +10,6 @@ namespace DistributedToDo.DAL.Interfaces
         void Edit(UserTask task);
         void Delete(UserTask task);
         UserTask GetTask(string taskId);
+        int GetTasksCount();
     }
 }

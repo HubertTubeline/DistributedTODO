@@ -120,6 +120,9 @@
   <data name="Account" xml:space="preserve">
     <value>Аккаунт</value>
   </data>
+  <data name="AllYourTasks" xml:space="preserve">
+    <value>Все Ваши дела на ближайшую жизнь.</value>
+  </data>
   <data name="Check" xml:space="preserve">
     <value>Выполнить</value>
   </data>
@@ -189,6 +192,9 @@
   <data name="Number" xml:space="preserve">
     <value>Номер телефона</value>
   </data>
+  <data name="OurHelpTasks" xml:space="preserve">
+    <value>задач</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
   </data>
@@ -216,6 +222,9 @@
   <data name="SuccessRegistered" xml:space="preserve">
     <value>Вы были успешно зарегистрированы</value>
   </data>
+  <data name="SupportUsers" xml:space="preserve">
+    <value>пользователей</value>
+  </data>
   <data name="Tasks" xml:space="preserve">
     <value>Задачи</value>
   </data>
@@ -227,5 +236,14 @@
   </data>
   <data name="ViewUserInformation" xml:space="preserve">
     <value>Просмотр информации пользователя</value>
+  </data>
+  <data name="WeGotSupport" xml:space="preserve">
+    <value>Мы заручились поддержкой</value>
+  </data>
+  <data name="WhereverYouAre" xml:space="preserve">
+    <value>Где бы Вы не находились.</value>
+  </data>
+  <data name="WithOurHelp" xml:space="preserve">
+    <value>С нашей помощью было создано</value>
   </data>
 </root>

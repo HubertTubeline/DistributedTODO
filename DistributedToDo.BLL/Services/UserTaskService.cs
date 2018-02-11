@@ -66,5 +66,10 @@ namespace DistributedToDo.BLL.Services
         {
             return Mapper.Map<UserTask,TaskDTO>(Database.TasksManager.GetTask(TaskId));
         }
+
+        public int GetTasksCount()
+        {
+            return Database.TasksManager.GetTasksCount();
+        }
     }
 }

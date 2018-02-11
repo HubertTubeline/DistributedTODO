@@ -1,15 +1,13 @@
 ﻿@model IEnumerable<DistributedToDo.Web.Models.TaskModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Resources.Resource.Tasks;
 }
 <script>
     document.getElementById("tasks-nav").classList.add('active');
 </script>
-<h4>@ViewBag.Message</h4>
-<h2>@Resources.Resource.Tasks</h2>
 <div id="map"></div>
 <br />
-@Html.ActionLink(Resources.Resource.CreateTask, "Create", null, new { @class = "btn btn-success col-sm-offset-1 col-md-offset-1 col-md-10 col-lg-10 col-lg-offset-1 col-xs-12 col-sm-10" })
+@Html.ActionLink(Resources.Resource.CreateTask, "Create", null, new { @class = "btn btn-success col-xs-12" })
 <br />
 <hr />
 @foreach (var item in Model)

@@ -12,5 +12,6 @@ namespace DistributedToDo.BLL.Interfaces
         OperationDetails Edit(TaskDTO taskDto);
         OperationDetails Delete(TaskDTO taskDto);
         TaskDTO GetTask(string taskId);
+        int GetTasksCount();
     }
 }

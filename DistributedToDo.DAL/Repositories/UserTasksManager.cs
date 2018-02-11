@@ -66,5 +66,10 @@ namespace DistributedToDo.DAL.Repositories
         {
             return Database.UserTasks.FirstOrDefault(x => x.Id == taskId);
         }
+
+        public int GetTasksCount()
+        {
+            return Database.UserTasks.Count();
+        }
     }
 }

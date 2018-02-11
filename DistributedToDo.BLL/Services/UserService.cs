@@ -82,5 +82,10 @@ namespace DistributedToDo.BLL.Services
         {
             Database.Dispose();
         }
+
+        public int GetUsersCount()
+        {
+            return Database.UserManager.Users.Count();
+        }
     }
 }
