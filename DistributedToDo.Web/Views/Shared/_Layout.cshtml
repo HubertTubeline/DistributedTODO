@@ -2,17 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=false">
     <title>@ViewBag.Title - Distributed TODO</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    @{
-        var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
-        var actionName = this.ViewContext.RouteData.Values["action"].ToString();
-    }
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -21,18 +16,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="headname navbar-brand">Distributed To Do</a>
+                @Html.ActionLink("Distributed To Do", "Index", "Home", null, new { @class = "headname navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li id="home-nav">@Html.ActionLink(Resources.Resource.Home, "Index", "Home")</li>
-                    <li id="tasks-nav">@Html.ActionLink(Resources.Resource.Tasks, "Index", "Task")</li>
-                    <li id="create-nav">@Html.ActionLink(Resources.Resource.CreateTask, "Create", "Task")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li id="tasks-nav">@Html.ActionLink(Resources.Resource.Tasks, "Index", "Task")</li>
+                        <li id="create-nav">@Html.ActionLink(Resources.Resource.CreateTask, "Create", "Task")</li>
+                    }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <li id="signIn-nav">@Html.ActionLink(Resources.Resource.SignIn, "Login", "Account")</li>
+                        <li id="signIn-nav"><a href="#myModal" class="" data-toggle="modal">@Resources.Resource.SignIn</a></li>
                         <li id="signUp-nav">@Html.ActionLink(Resources.Resource.SignUp, "Register", "Account")</li>
                     }
                     else
@@ -44,22 +42,27 @@
                     }
                     <li>
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            @Resources.Resource.Language
+                            <span class="glyphicon glyphicon-globe"> </span> @Resources.Resource.Language
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                @Html.ActionLink("English", "ChangeCulture", "Home", new { locale = "en", actionName = actionName,
-                               controllerName = controllerName
-                           },
-                                    null)
+                                @Html.ActionLink("English", "ChangeCulture", "Home", new
+                                {
+                                    locale = "en",
+                                    actionName = this.ViewContext.RouteData.Values["action"].ToString(),
+                                    controllerName = this.ViewContext.RouteData.Values["controller"].ToString()
+                                },
+                                                             null)
                             </li>
                             <li>
-                                @Html.ActionLink("Русский", "ChangeCulture", "Home", new { locale = "ru",
-                               actionName = actionName,
-                               controllerName = controllerName
-                           },
-                                    null)
+                                @Html.ActionLink("Русский", "ChangeCulture", "Home", new
+                                {
+                                    locale = "ru",
+                                    actionName = this.ViewContext.RouteData.Values["action"].ToString(),
+                                    controllerName = this.ViewContext.RouteData.Values["controller"].ToString()
+                                },
+                                                             null)
                             </li>
                         </ul>
                 </ul>
@@ -68,6 +71,24 @@
     </div>
     <div class="container body-content col-lg-12 col-sm-12 col-md-12 col-xs-12">
         @RenderBody()
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div id="myModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Заголовок модального окна -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">@Resources.Resource.SignIn</h4>
+                        </div>
+                        <!-- Основное содержимое модального окна -->
+                        <div class="modal-body">
+                            @{ Html.RenderPartial("_Login"); }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
         <hr class="col-lg-12 col-sm-12 col-md-12 col-xs-12" />
         <footer class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
             <p>&copy; @DateTime.Now.Year - Vitasya co.</p>
@@ -76,6 +97,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -9,11 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
-using Google.Maps;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using GeoJSON.Net.Geometry;
-using System.Collections;
 
 namespace DistributedToDo.Web.Controllers
 {
@@ -43,9 +38,12 @@ namespace DistributedToDo.Web.Controllers
             foreach (TaskModel x in item)
             {
                 taskIndex++;
-                taskMarkers.Add(new GeoLocation { Label = label, Name = x.Name, GeoLat = x.GeoLat, GeoLong = x.GeoLong });
-                x.Label = label++;
-                if (label == '[') label = 'a';
+                if (x.GeoLat != null && x.GeoLong != null)
+                {
+                    taskMarkers.Add(new GeoLocation { Label = label, Name = x.Name, GeoLat = x.GeoLat, GeoLong = x.GeoLong });
+                    x.Label = label++;
+                    if (label == '[') label = 'a';
+                }
             }
             ViewBag.taskindex = taskIndex;
             ViewBag.taskMarkers = taskMarkers;
@@ -82,6 +80,7 @@ namespace DistributedToDo.Web.Controllers
                 item.UserName = User.Identity.Name;
                 if (item.GeoLat == "0" && item.GeoLong == "0")
                     item.GeoLat = item.GeoLong = null;
+
                 OperationDetails details = TaskService.Create(item);
                 ViewBag.Message = details.Message;
                 return RedirectToAction("Index");
@@ -92,13 +91,13 @@ namespace DistributedToDo.Web.Controllers
         [HttpGet]
         public ActionResult Edit(string taskId)
         {
-            TaskDTO model = TaskService.GetTask(taskId);
-            if (model.UserName == User.Identity.Name)
-            {
-                TaskModel item = Mapper.Map<TaskModel>(model);
-                return View(item);
-            }
-            return RedirectToAction("Index", "Home");
+                TaskDTO model = TaskService.GetTask(taskId);
+                if (model.UserName == User.Identity.Name)
+                {
+                    TaskModel item = Mapper.Map<TaskModel>(model);
+                    return View(item);
+                }
+                return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

@@ -6,6 +6,7 @@ using DistributedToDo.Web.Infrastructure;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Mvc;
+using FluentValidation.Mvc;
 
 namespace DistributedToDo.Web
 {
@@ -17,7 +18,8 @@ namespace DistributedToDo.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            //Выполняем инициализацию Fluent Validation
+            FluentValidationModelValidatorProvider.Configure();
             //Инициализация маппера
             Mapper.Initialize(cfg => 
             {

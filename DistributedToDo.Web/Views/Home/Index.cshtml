@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = Resources.Resource.Home;
 }
 <script>
     document.getElementById("home-nav").classList.add('active');
@@ -8,12 +8,30 @@
 <div id="headerwrap">
     @Resources.Resource.AllYourTasks @Resources.Resource.WhereverYouAre
 </div>
-<div id="bodywrap">
-    <div class="block">
+<div class="panel panel-default bodywrap col-lg-3">
+    <div class="panel-body">
         @Resources.Resource.WeGotSupport @ViewBag.UsersCount @Resources.Resource.SupportUsers
     </div>
-    <div class="block">
+</div>
+<div class="panel panel-default bodywrap col-lg-3">
+    <div class="panel-body">
         @Resources.Resource.WithOurHelp @ViewBag.TasksCount @Resources.Resource.OurHelpTasks
     </div>
 </div>
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="panel panel-default bodywrap col-lg-3">
+        <div class="panel-body">
+            @Resources.Resource.JoinNow! @Html.ActionLink(Resources.Resource.SignUp, "Register", "Account")
+        </div>
+    </div>
+}
+else
+{
+    <div class="panel panel-default bodywrap col-lg-3">
+        <div class="panel-body">
+            @Resources.Resource.ThankYouForUse :)
+        </div>
+    </div>
+}
 <link rel="stylesheet" href="~/Content/Home.css" />

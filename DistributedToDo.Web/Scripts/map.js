@@ -1,29 +1,40 @@
 ﻿function initMap() {
 
-    var point = new google.maps.LatLng(array[0].GeoLat, array[0].GeoLong)
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: point,
-        zoom: 6
-    });
-    for (var i = 0; i < array.length; i++) {
-        var point = new google.maps.LatLng(array[i].GeoLat, array[i].GeoLong);
-        var marker = new google.maps.Marker({
-            position: point,
-            map: map,
-            label: array[i].Label,
-            title: "" + i
+    if (array.length > 0) {
+        var point = new google.maps.LatLng(array[0].GeoLat, array[0].GeoLong);
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: point,
+            zoom: 6
         });
+    }
+    else {
+        var point = new google.maps.LatLng(0, 0);
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: point,
+            zoom: 2
+        });
+    }
+    if (array.length > 0) {
+        for (var i = 0; i < array.length; i++) {
+            var point = new google.maps.LatLng(array[i].GeoLat, array[i].GeoLong);
+            var marker = new google.maps.Marker({
+                position: point,
+                map: map,
+                label: array[i].Label,
+                title: "" + i
+            });
+        }
     }
 }
 
 function initMapEdit() {
-    var marker = new google.maps.Marker({ position: center });
     var point = new google.maps.LatLng(document.getElementById('geoLat').value,
         document.getElementById('geoLong').value);
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: point
     });
+
 
     // This event listener calls addMarker() when the map is clicked.
     google.maps.event.addListener(map, 'click', function (event) {

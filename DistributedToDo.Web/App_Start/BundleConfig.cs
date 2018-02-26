@@ -12,7 +12,8 @@ namespace DistributedToDo.Web
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                                    "~/Scripts/jquery.unobtrusive*",
+                                    "~/Scripts/jquery.validate*"));
 
             //Create bundel for jQueryUI  
             //js  

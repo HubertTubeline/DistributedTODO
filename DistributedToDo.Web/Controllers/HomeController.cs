@@ -58,5 +58,10 @@ namespace DistributedToDo.Web.Controllers
             return RedirectToAction(actionName, controllerName);
 
         }
+
+        public ActionResult LoginForm()
+        {
+            return PartialView("_Login");
+        }
     }
 }

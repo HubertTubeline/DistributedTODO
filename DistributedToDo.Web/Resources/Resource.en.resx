@@ -225,7 +225,7 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="ErrorEmail" xml:space="preserve">
+  <data name="EmailError" xml:space="preserve">
     <value>Enter a valid E-mail adress</value>
   </data>
   <data name="ErrorRequired" xml:space="preserve">
@@ -248,5 +248,50 @@
   </data>
   <data name="WithOurHelp" xml:space="preserve">
     <value>With our help</value>
+  </data>
+  <data name="JoinNow" xml:space="preserve">
+    <value>Join now</value>
+  </data>
+  <data name="ThankYouForUse" xml:space="preserve">
+    <value>Thank you for being one of these users</value>
+  </data>
+  <data name="EmailEmpty" xml:space="preserve">
+    <value>Email can not be empty</value>
+  </data>
+  <data name="FirstNameEmpty" xml:space="preserve">
+    <value>Fist name can not be empty</value>
+  </data>
+  <data name="LastNameEmpty" xml:space="preserve">
+    <value>Last name can not be empty</value>
+  </data>
+  <data name="NameEmpty" xml:space="preserve">
+    <value>Name can not be empty</value>
+  </data>
+  <data name="PasswordEmpty" xml:space="preserve">
+    <value>Password can not be empty</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Email is invalid</value>
+  </data>
+  <data name="PasswordInvalid" xml:space="preserve">
+    <value>Password is invalid</value>
+  </data>
+  <data name="PasswordsDoNotMatch" xml:space="preserve">
+    <value>Passwords do not match</value>
+  </data>
+  <data name="PasswordIsEmpty" xml:space="preserve">
+    <value>Password can't be empty</value>
+  </data>
+  <data name="PasswordLength" xml:space="preserve">
+    <value>Password must contain from 6 to 32 characters</value>
+  </data>
+  <data name="CommentIsLong" xml:space="preserve">
+    <value>The comment can not be longer than 256 characters</value>
+  </data>
+  <data name="ErrorRequest" xml:space="preserve">
+    <value>An error occurred while processing your request</value>
+  </data>
+  <data name="FieldsRequired" xml:space="preserve">
+    <value>Required fields</value>
   </data>
 </root>

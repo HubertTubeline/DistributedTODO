@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Комментарий не может быть длиннее 256 символов.
+        /// </summary>
+        public static string CommentIsLong {
+            get {
+                return ResourceManager.GetString("CommentIsLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Подтвердите пароль.
         /// </summary>
         public static string ConfirmPassword {
@@ -187,6 +196,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Электронный адрес не может быть пустым.
+        /// </summary>
+        public static string EmailEmpty {
+            get {
+                return ResourceManager.GetString("EmailEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Введите корректный E-mail адрес.
+        /// </summary>
+        public static string EmailError {
+            get {
+                return ResourceManager.GetString("EmailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Введенная почта неверна.
+        /// </summary>
+        public static string EmailInvalid {
+            get {
+                return ResourceManager.GetString("EmailInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ошибка.
         /// </summary>
         public static string Error {
@@ -196,11 +232,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Введите корректный E-mail адрес.
+        ///   Ищет локализованную строку, похожую на Во время обработки Вашего запроса произошла ошибка.
         /// </summary>
-        public static string ErrorEmail {
+        public static string ErrorRequest {
             get {
-                return ResourceManager.GetString("ErrorEmail", resourceCulture);
+                return ResourceManager.GetString("ErrorRequest", resourceCulture);
             }
         }
         
@@ -214,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Поля, обязательные к заполнению.
+        /// </summary>
+        public static string FieldsRequired {
+            get {
+                return ResourceManager.GetString("FieldsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Имя.
         /// </summary>
         public static string FirstName {
@@ -223,11 +268,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Имя не может быть пустым.
+        /// </summary>
+        public static string FirstNameEmpty {
+            get {
+                return ResourceManager.GetString("FirstNameEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Главная.
         /// </summary>
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Присоединяйтесь сейчас.
+        /// </summary>
+        public static string JoinNow {
+            get {
+                return ResourceManager.GetString("JoinNow", resourceCulture);
             }
         }
         
@@ -246,6 +309,15 @@ namespace Resources {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Фамилия не может быть пустой.
+        /// </summary>
+        public static string LastNameEmpty {
+            get {
+                return ResourceManager.GetString("LastNameEmpty", resourceCulture);
             }
         }
         
@@ -277,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Имя не может быть пустым.
+        /// </summary>
+        public static string NameEmpty {
+            get {
+                return ResourceManager.GetString("NameEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Номер телефона.
         /// </summary>
         public static string Number {
@@ -300,6 +381,51 @@ namespace Resources {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пароль не может быть пустым.
+        /// </summary>
+        public static string PasswordEmpty {
+            get {
+                return ResourceManager.GetString("PasswordEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Введенный пароль неверный.
+        /// </summary>
+        public static string PasswordInvalid {
+            get {
+                return ResourceManager.GetString("PasswordInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пароль не может быть пустым.
+        /// </summary>
+        public static string PasswordIsEmpty {
+            get {
+                return ResourceManager.GetString("PasswordIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пароль должен содержать от 6 до 32 символов.
+        /// </summary>
+        public static string PasswordLength {
+            get {
+                return ResourceManager.GetString("PasswordLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пароли не совпадают.
+        /// </summary>
+        public static string PasswordsDoNotMatch {
+            get {
+                return ResourceManager.GetString("PasswordsDoNotMatch", resourceCulture);
             }
         }
         
@@ -390,6 +516,15 @@ namespace Resources {
         public static string Tasks {
             get {
                 return ResourceManager.GetString("Tasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Спасибо, что Вы один из этих пользователей.
+        /// </summary>
+        public static string ThankYouForUse {
+            get {
+                return ResourceManager.GetString("ThankYouForUse", resourceCulture);
             }
         }
         

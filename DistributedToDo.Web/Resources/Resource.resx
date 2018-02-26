@@ -132,6 +132,9 @@
   <data name="Comment" xml:space="preserve">
     <value>Комментарий</value>
   </data>
+  <data name="CommentIsLong" xml:space="preserve">
+    <value>Комментарий не может быть длиннее 256 символов</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Подтвердите пароль</value>
   </data>
@@ -159,26 +162,47 @@
   <data name="Email" xml:space="preserve">
     <value>Электронный адрес</value>
   </data>
+  <data name="EmailEmpty" xml:space="preserve">
+    <value>Электронный адрес не может быть пустым</value>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>Введите корректный E-mail адрес</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Введенная почта неверна</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
   </data>
-  <data name="ErrorEmail" xml:space="preserve">
-    <value>Введите корректный E-mail адрес</value>
+  <data name="ErrorRequest" xml:space="preserve">
+    <value>Во время обработки Вашего запроса произошла ошибка</value>
   </data>
   <data name="ErrorRequired" xml:space="preserve">
     <value>Поле не может быть пустым</value>
   </data>
+  <data name="FieldsRequired" xml:space="preserve">
+    <value>Поля, обязательные к заполнению</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>Имя</value>
   </data>
+  <data name="FirstNameEmpty" xml:space="preserve">
+    <value>Имя не может быть пустым</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Главная</value>
+  </data>
+  <data name="JoinNow" xml:space="preserve">
+    <value>Присоединяйтесь сейчас</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Язык</value>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Фамилия</value>
+  </data>
+  <data name="LastNameEmpty" xml:space="preserve">
+    <value>Фамилия не может быть пустой</value>
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>Выход</value>
@@ -189,6 +213,9 @@
   <data name="Name" xml:space="preserve">
     <value>Имя</value>
   </data>
+  <data name="NameEmpty" xml:space="preserve">
+    <value>Имя не может быть пустым</value>
+  </data>
   <data name="Number" xml:space="preserve">
     <value>Номер телефона</value>
   </data>
@@ -197,6 +224,21 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
+  </data>
+  <data name="PasswordEmpty" xml:space="preserve">
+    <value>Пароль не может быть пустым</value>
+  </data>
+  <data name="PasswordInvalid" xml:space="preserve">
+    <value>Введенный пароль неверный</value>
+  </data>
+  <data name="PasswordIsEmpty" xml:space="preserve">
+    <value>Пароль не может быть пустым</value>
+  </data>
+  <data name="PasswordLength" xml:space="preserve">
+    <value>Пароль должен содержать от 6 до 32 символов</value>
+  </data>
+  <data name="PasswordsDoNotMatch" xml:space="preserve">
+    <value>Пароли не совпадают</value>
   </data>
   <data name="Photo" xml:space="preserve">
     <value>Фотография</value>
@@ -227,6 +269,9 @@
   </data>
   <data name="Tasks" xml:space="preserve">
     <value>Задачи</value>
+  </data>
+  <data name="ThankYouForUse" xml:space="preserve">
+    <value>Спасибо, что Вы один из этих пользователей</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Время</value>

@@ -1,8 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using FluentValidation;
+using FluentValidation.Attributes;
+using System;
 
 namespace DistributedToDo.Web.Models
 {
+    [Validator(typeof(TaskModelValidator))]
     public class TaskModel
     {
         public string Id { get; set; }
@@ -11,23 +13,24 @@ namespace DistributedToDo.Web.Models
 
         public char Label { get; set; }
 
-        [Required]
         public string Name { get; set; }
-        [Required]
+
         public string Description { get; set; }
-        [Required]
         public DateTime Date { get; set; }
-        [Required]
+
         public TimeSpan Time { get; set; }
 
         public string GeoLong { get; set; }
         public string GeoLat { get; set; }
     }
-    public class GeoLocation
+    public class TaskModelValidator : AbstractValidator<TaskModel>
     {
-        public string Name { get; set; }
-        public char Label { get; set; }
-        public string GeoLong { get; set; }
-        public string GeoLat { get; set; }
+        public TaskModelValidator()
+        {
+            RuleFor(x => x.Name)
+                .NotEmpty().WithMessage(x => Resources.Resource.ErrorRequired);
+            
+        }
     }
+
 }

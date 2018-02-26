@@ -71,6 +71,7 @@ namespace DistributedToDo.Web.Controllers
             return View(user);
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
@@ -137,6 +138,28 @@ namespace DistributedToDo.Web.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult Ajax()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Ajax(LoginModel loginModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = Login(loginModel);
+                if (user != null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState["Password"].Errors.Add("Пароли не совпадают");
+            }
+            return View(loginModel);
+        }
+
 
 
         private Image resizeImage(Image image, int new_height, int new_width)
