@@ -8,62 +8,17 @@
 <div id="map"></div>
 <br />
 @Html.ActionLink(Resources.Resource.CreateTask, "Create", null, new { @class = "btn btn-success col-xs-12" })
-<br />
 <hr />
-@foreach (var item in Model)
-{
-    using (Html.BeginForm())
+<div id="tasklist">
+    @foreach (var item in Model)
     {
-        <div class="panel panel-group panel-default">
-            @Html.Hidden("Id", item.Id)
-            <div class="panel-heading">
-                <span class="btn-group">
-                    <button class="btn btn-group btn-success" name="action" value="check"><span class="glyphicon glyphicon-check"></span></button>
-                    @if (item.Description != null)
-                    {
-                        <span class="btn btn-group btn-default dropdown" data-toggle="collapse" data-target="#@item.Id"> 
-                        @item.Name <span class="badge :empty">@item.Label</span>
-                    </span>
-                    }
-                    else
-                    {
-                        <span class="btn btn-group btn-default"> 
-                        @item.Name <span class="badge :empty">@item.Label</span>
-                        </span>
-                    }
-                </span>
-            </div>
-            @if (item.Description != null)
-            {
-            <div class="panel-body collapse" id="@item.Id">
-                <div>
-                    <p class="well-sm well">@item.Description</p>
-                </div>
-            </div>
-            }
-            <div class="panel-footer">
-                @if (item.Date.ToString("dd.MM.yy") != @"00.00.00")
-                {
-                <span class="glyphicon glyphicon-calendar"></span>
-                @item.Date.ToString("dd.MM.yy")
-                }
-                @if (item.Time.ToString(@"hh\:mm") != @"00:00")
-                {
-                <span class="glyphicon glyphicon-time">  </span>
-                @item.Time.ToString(@"hh\:mm")
-                }
-                <button class="btn btn-sm btn-info" name="action" value="edit">
-                    <span class="glyphicon glyphicon-edit"></span>
-                    @Resources.Resource.Edit
-                </button>
-            </div>
-        </div>
+        Html.RenderPartial("_Task", item);
     }
-}
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUfLVNhJKzJWBFEzqpkgIYwmdkIlRbsh4&callback=initMap"
-        async defer>
-</script>
-<script>
+</div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUfLVNhJKzJWBFEzqpkgIYwmdkIlRbsh4&callback=initMap"
+                async defer>
+        </script>
+        <script>
      var array = @Html.Raw(Json.Encode(@ViewBag.taskMarkers));
-</script>
-@Scripts.Render("~/Scripts/map.js")
+        </script>
+        @Scripts.Render("~/Scripts/map.js")

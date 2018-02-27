@@ -1,5 +1,6 @@
 ﻿@model DistributedToDo.Web.Models.LoginModel
 
+
 @using (Html.BeginForm("Login", "Account"))
 {
     @Html.AntiForgeryToken()
@@ -22,7 +23,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-12">
                 <input type="submit" value="@Resources.Resource.SignIn" class="btn btn-default" />
             </div>
         </div>

@@ -277,6 +277,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Скрыть выполненные задачи.
+        /// </summary>
+        public static string HideCompleted {
+            get {
+                return ResourceManager.GetString("HideCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Главная.
         /// </summary>
         public static string Home {
@@ -471,6 +480,15 @@ namespace Resources {
         public static string SelectPlace {
             get {
                 return ResourceManager.GetString("SelectPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Показать выполненные задачи.
+        /// </summary>
+        public static string ShowCompleted {
+            get {
+                return ResourceManager.GetString("ShowCompleted", resourceCulture);
             }
         }
         

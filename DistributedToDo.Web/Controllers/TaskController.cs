@@ -114,14 +114,15 @@ namespace DistributedToDo.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Check(string taskId)
+        public ActionResult Check(string taskId, char label)
         {
             TaskDTO task = TaskService.GetTask(taskId);
-            if (task.UserName == User.Identity.Name)
-            {
-                TaskService.Delete(task);
-            }
-            return RedirectToAction("Index");
+            task.Checked = (task.Checked) ? false : true;
+            OperationDetails details = TaskService.Edit(task);
+            ViewBag.Message = details.Message;
+            TaskModel model = Mapper.Map<TaskModel>(task);
+            model.Label = label;
+            return PartialView("_Task", model);
         }
     }
 }

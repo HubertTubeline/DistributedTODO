@@ -294,4 +294,10 @@
   <data name="FieldsRequired" xml:space="preserve">
     <value>Required fields</value>
   </data>
+  <data name="HideCompleted" xml:space="preserve">
+    <value>Hide completed tasks</value>
+  </data>
+  <data name="ShowCompleted" xml:space="preserve">
+    <value>Show completed tasks</value>
+  </data>
 </root>

@@ -29,17 +29,17 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (!User.Identity.IsAuthenticated)
-                    {
-                        <li id="signIn-nav"><a href="#myModal" class="" data-toggle="modal">@Resources.Resource.SignIn</a></li>
-                        <li id="signUp-nav">@Html.ActionLink(Resources.Resource.SignUp, "Register", "Account")</li>
-                    }
-                    else
-                    {
-                        <li id="profile-nav">
-                            <a href="@Url.Action("Index","Account")"><span class="glyphicon glyphicon-user"></span> @Resources.Resource.Profile</a>
-                        </li>
-                        <li>@Html.ActionLink(Resources.Resource.LogOut, "Logout", "Account")</li>
-                    }
+    {
+                <li id="signIn-nav"><a href="#myModal" class="" data-toggle="modal">@Resources.Resource.SignIn</a></li>
+                <li id="signUp-nav">@Html.ActionLink(Resources.Resource.SignUp, "Register", "Account")</li>
+}
+else
+{
+                <li id="profile-nav">
+                    <a href="@Url.Action("Index","Account")"><span class="glyphicon glyphicon-user"></span> @Resources.Resource.Profile</a>
+                </li>
+                <li>@Html.ActionLink(Resources.Resource.LogOut, "Logout", "Account")</li>
+}
                     <li>
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="glyphicon glyphicon-globe"> </span> @Resources.Resource.Language
@@ -48,21 +48,20 @@
                         <ul class="dropdown-menu">
                             <li>
                                 @Html.ActionLink("English", "ChangeCulture", "Home", new
-                                {
-                                    locale = "en",
-                                    actionName = this.ViewContext.RouteData.Values["action"].ToString(),
-                                    controllerName = this.ViewContext.RouteData.Values["controller"].ToString()
-                                },
-                                                             null)
+                {
+                    locale = "en",
+                    actionName = this.ViewContext.RouteData.Values["action"].ToString(),
+                    controllerName = this.ViewContext.RouteData.Values["controller"].ToString()
+                },
+                                                       null)
                             </li>
                             <li>
                                 @Html.ActionLink("Русский", "ChangeCulture", "Home", new
-                                {
-                                    locale = "ru",
-                                    actionName = this.ViewContext.RouteData.Values["action"].ToString(),
-                                    controllerName = this.ViewContext.RouteData.Values["controller"].ToString()
-                                },
-                                                             null)
+                {
+                    locale = "ru",
+                    actionName = this.ViewContext.RouteData.Values["action"].ToString(),
+                    controllerName = this.ViewContext.RouteData.Values["controller"].ToString()
+                }, null)
                             </li>
                         </ul>
                 </ul>
@@ -72,23 +71,23 @@
     <div class="container body-content col-lg-12 col-sm-12 col-md-12 col-xs-12">
         @RenderBody()
         @if (!User.Identity.IsAuthenticated)
-        {
-            <div id="myModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!-- Заголовок модального окна -->
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">@Resources.Resource.SignIn</h4>
-                        </div>
-                        <!-- Основное содержимое модального окна -->
-                        <div class="modal-body">
-                            @{ Html.RenderPartial("_Login"); }
-                        </div>
+    {
+        <div id="myModal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Заголовок модального окна -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">@Resources.Resource.SignIn</h4>
+                    </div>
+                    <!-- Основное содержимое модального окна -->
+                    <div class="modal-body">
+                        @{ Html.RenderPartial("_Login"); }
                     </div>
                 </div>
             </div>
-        }
+        </div>
+}
         <hr class="col-lg-12 col-sm-12 col-md-12 col-xs-12" />
         <footer class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
             <p>&copy; @DateTime.Now.Year - Vitasya co.</p>
